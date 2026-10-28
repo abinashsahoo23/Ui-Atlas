@@ -1,0 +1,184 @@
+.container {
+  width: 100%;
+  min-height: 420px;
+  background: #090b10;
+  border-radius: var(--radius-lg, 12px);
+  border: 1px solid var(--border-subtle, rgba(255, 255, 255, 0.08));
+  padding: 1.75rem;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.75rem;
+  font-family: var(--font-mono, monospace);
+  color: #38bdf8;
+  background: rgba(56, 189, 248, 0.1);
+  padding: 0.25rem 0.65rem;
+  border-radius: 4px;
+}
+
+.navControls {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.playBtn,
+.arrowBtn {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #94a3b8;
+  padding: 0.4rem;
+  border-radius: 4px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.playBtn:hover,
+.arrowBtn:hover {
+  background: rgba(255, 255, 255, 0.12);
+  color: #ffffff;
+}
+
+.playingActive {
+  background: rgba(56, 189, 248, 0.15);
+  color: #38bdf8;
+  border-color: #38bdf8;
+}
+
+.divider {
+  width: 1px;
+  height: 16px;
+  background: rgba(255, 255, 255, 0.1);
+  margin: 0 0.25rem;
+}
+
+.carouselTrack {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  border-radius: var(--radius-md, 8px);
+}
+
+.sliderStrip {
+  display: flex;
+  gap: 1.25rem;
+  transition: transform 0.45s cubic-bezier(0.2, 0.8, 0.2, 1);
+  width: 100%;
+}
+
+.card {
+  flex: 0 0 100%;
+  border-radius: var(--radius-md, 8px);
+  border: 1px solid;
+  padding: 2rem 1.75rem;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5);
+  transition: border-color 0.3s ease;
+}
+
+.cardHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.25rem;
+}
+
+.tagBadge {
+  font-size: 0.65rem;
+  font-family: var(--font-mono, monospace);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+  border: 1px solid;
+  background: rgba(0, 0, 0, 0.3);
+}
+
+.readTime {
+  font-size: 0.75rem;
+  font-family: var(--font-mono, monospace);
+  color: #94a3b8;
+}
+
+.title {
+  margin: 0 0 0.75rem 0;
+  font-size: 1.35rem;
+  font-weight: 600;
+  color: #ffffff;
+  letter-spacing: -0.01em;
+  line-height: 1.35;
+}
+
+.summary {
+  margin: 0 0 1.75rem 0;
+  font-size: 0.875rem;
+  line-height: 1.6;
+  color: #cbd5e1;
+}
+
+.footerRow {
+  margin-top: auto;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.readMoreBtn {
+  background: transparent;
+  border: none;
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: gap 0.2s ease;
+}
+
+.readMoreBtn:hover {
+  gap: 0.65rem;
+}
+
+.paginationRow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 1.5rem;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.2);
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  transition: all 0.3s ease;
+}
+
+.activeDot {
+  width: 24px;
+  border-radius: 4px;
+  background: #38bdf8;
+}

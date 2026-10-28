@@ -1,0 +1,236 @@
+.container {
+  position: relative;
+  width: 100%;
+  min-height: 480px;
+  background-color: #05060e;
+  border-radius: 12px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 12px 36px -8px rgba(0, 0, 0, 0.6);
+  user-select: none;
+}
+
+.centerStage {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  perspective: 1000px;
+  padding: 2rem;
+}
+
+.cardShell {
+  position: relative;
+  width: 320px;
+  height: 200px;
+  border-radius: 16px;
+  background: linear-gradient(135deg, #0f172a, #020617);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 24px 48px -12px rgba(0, 0, 0, 0.8), inset 0 1px 0 rgba(255, 255, 255, 0.2);
+  transform-style: preserve-3d;
+  transition: transform 0.1s ease-out;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.holographicFilm {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    115deg,
+    transparent 0%,
+    rgba(244, 114, 182, 0.2) 25%,
+    rgba(168, 85, 247, 0.25) 45%,
+    rgba(56, 189, 248, 0.3) 65%,
+    transparent 100%
+  );
+  background-size: 200% 200%;
+  pointer-events: none;
+  mix-blend-mode: color-dodge;
+  z-index: 2;
+  transition: opacity 0.2s ease;
+}
+
+.glareHotspot {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle at var(--glare-x, 50%) var(--glare-y, 50%),
+    rgba(255, 255, 255, 0.5) 0%,
+    rgba(255, 255, 255, 0.1) 30%,
+    transparent 65%
+  );
+  pointer-events: none;
+  mix-blend-mode: overlay;
+  z-index: 3;
+}
+
+.cardContent {
+  position: relative;
+  z-index: 4;
+  height: 100%;
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.cardHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.chipIcon {
+  width: 36px;
+  height: 26px;
+  border-radius: 6px;
+  background: linear-gradient(135deg, #fbbf24, #d97706);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}
+
+.cardBrand {
+  font-family: var(--font-mono, monospace);
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  color: #94a3b8;
+}
+
+.cardNumber {
+  font-family: var(--font-mono, monospace);
+  font-size: 1.15rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  color: #f8fafc;
+}
+
+.cardFooter {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.holderName {
+  font-family: var(--font-heading, "Inter"), sans-serif;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  color: #f1f5f9;
+  text-transform: uppercase;
+}
+
+.holderExpiry {
+  font-family: var(--font-mono, monospace);
+  font-size: 0.75rem;
+  color: #94a3b8;
+}
+
+.overlay {
+  position: relative;
+  z-index: 5;
+  padding: 1.5rem;
+  pointer-events: none;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.35rem 0.75rem;
+  background: rgba(168, 85, 247, 0.1);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(168, 85, 247, 0.25);
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-family: var(--font-mono, monospace);
+  color: #c084fc;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 0.75rem;
+}
+
+.title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #f8fafc;
+  margin: 0 0 0.5rem 0;
+  letter-spacing: -0.02em;
+}
+
+.description {
+  font-size: 0.875rem;
+  color: #94a3b8;
+  max-width: 480px;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.controls {
+  position: relative;
+  z-index: 5;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  padding: 1.25rem 1.5rem;
+  background: linear-gradient(to top, rgba(5, 6, 14, 0.95), rgba(5, 6, 14, 0.4) 70%, transparent);
+  pointer-events: auto;
+}
+
+.controlGroup {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(15, 23, 42, 0.75);
+  backdrop-filter: blur(12px);
+  padding: 0.25rem 0.5rem;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.35rem 0.65rem;
+  font-size: 0.75rem;
+  font-family: var(--font-mono, monospace);
+  color: #94a3b8;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.btn:hover {
+  color: #f1f5f9;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.btn.active {
+  color: #c084fc;
+  background: rgba(192, 132, 252, 0.15);
+  border-color: rgba(192, 132, 252, 0.35);
+}
+
+.cardShell:focus-visible {
+  outline: 2px solid #c084fc;
+  outline-offset: 4px;
+}
+
+.btn:focus-visible {
+  outline: 2px solid #c084fc;
+  outline-offset: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cardShell {
+    transition: none !important;
+  }
+}

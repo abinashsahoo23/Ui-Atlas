@@ -1,0 +1,128 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 44rem;
+  background: #fbfbf9;
+  border: 1px solid #e5e3db;
+  padding: 1.75rem;
+  box-shadow: 4px 4px 0 #dedbce;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-bottom: 0.85rem;
+  border-bottom: 1px solid #e8e6dc;
+}
+
+.tag {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-family: var(--font-ui-mono), monospace;
+  font-size: 0.58rem;
+  font-weight: 700;
+  color: #787569;
+  letter-spacing: 0.08em;
+}
+
+.sparkle {
+  color: #b45309;
+}
+
+.controls {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-family: var(--font-ui-mono), monospace;
+  font-size: 0.58rem;
+  color: #787569;
+}
+
+.stageBtn {
+  border: 1px solid #dcdad0;
+  background: #ffffff;
+  color: #5c594d;
+  font-family: var(--font-ui-mono), monospace;
+  font-size: 0.56rem;
+  font-weight: 700;
+  padding: 0.2rem 0.45rem;
+  cursor: pointer;
+  transition: all 120ms ease;
+}
+
+.stageBtn:hover {
+  background: #f3f1e8;
+}
+
+.stageBtn[data-active="true"] {
+  background: #1c1917;
+  border-color: #1c1917;
+  color: #ffffff;
+}
+
+.editorialCanvas {
+  padding: 2rem 0 1.5rem;
+}
+
+.issueNumber {
+  display: inline-block;
+  font-family: var(--font-ui-mono), monospace;
+  font-size: 0.58rem;
+  color: #b45309;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  margin-bottom: 0.75rem;
+}
+
+.maskedLines {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.maskWrapper {
+  overflow: hidden;
+  padding-bottom: 0.15rem;
+}
+
+.lineText {
+  margin: 0;
+  font-family: var(--font-display), sans-serif;
+  font-size: clamp(1.8rem, 4.5cqw, 2.85rem);
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: -0.04em;
+  color: #1c1917;
+  transition: transform 380ms cubic-bezier(0.16, 1, 0.3, 1), opacity 300ms ease;
+}
+
+.editorialSubhead {
+  max-width: 48ch;
+  margin: 1.5rem 0 0;
+  color: #636155;
+  font-size: 0.82rem;
+  line-height: 1.65;
+}
+
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 0.85rem;
+  border-top: 1px solid #e8e6dc;
+  font-family: var(--font-ui-mono), monospace;
+  font-size: 0.55rem;
+  color: #928f80;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lineText {
+    transition: none !important;
+    transform: none !important;
+    opacity: 1 !important;
+  }
+}

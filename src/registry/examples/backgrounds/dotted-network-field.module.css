@@ -1,0 +1,114 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 44rem;
+  background: #0b1120;
+  border: 1px solid #1e293b;
+  padding: 1.5rem;
+  box-shadow: 0 16px 32px rgb(0 0 0 / 40%);
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding-bottom: 0.85rem;
+  border-bottom: 1px solid #1e293b;
+}
+
+.tag {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-family: var(--font-ui-mono), monospace;
+  font-size: 0.58rem;
+  font-weight: 700;
+  color: #94a3b8;
+  letter-spacing: 0.08em;
+}
+
+.icon {
+  color: #60a5fa;
+}
+
+.controls {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-family: var(--font-ui-mono), monospace;
+  font-size: 0.56rem;
+  color: #64748b;
+}
+
+.densityBtn {
+  border: 1px solid #334155;
+  background: #0f172a;
+  color: #94a3b8;
+  padding: 0.2rem 0.5rem;
+  font-family: var(--font-ui-mono), monospace;
+  font-size: 0.55rem;
+  cursor: pointer;
+  transition: all 120ms ease;
+}
+
+.densityBtn:hover {
+  background: #1e293b;
+}
+
+.densityBtn[data-active="true"] {
+  background: #2563eb;
+  border-color: #2563eb;
+  color: #ffffff;
+}
+
+.canvasContainer {
+  position: relative;
+  width: 100%;
+  height: 240px;
+  overflow: hidden;
+  margin: 1.25rem 0;
+  background: radial-gradient(circle at center, #111c35 0%, #080d1a 100%);
+  border: 1px solid #1e293b;
+}
+
+.canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.canvasOverlay {
+  position: absolute;
+  top: 1rem;
+  left: 1.25rem;
+  max-width: 20rem;
+  pointer-events: none;
+}
+
+.canvasOverlay h3 {
+  margin: 0;
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: #f1f5f9;
+  letter-spacing: -0.02em;
+}
+
+.canvasOverlay p {
+  margin: 0.35rem 0 0;
+  font-size: 0.72rem;
+  color: #94a3b8;
+  line-height: 1.5;
+}
+
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 0.75rem;
+  border-top: 1px solid #1e293b;
+  font-family: var(--font-ui-mono), monospace;
+  font-size: 0.54rem;
+  color: #64748b;
+}

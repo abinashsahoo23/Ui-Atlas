@@ -1,0 +1,134 @@
+.note {
+  position: relative;
+  display: flex;
+  min-height: 16rem;
+  flex-direction: column;
+  justify-content: center;
+  overflow: hidden;
+  border: 1px solid #dbd8ce;
+  background:
+    linear-gradient(90deg, transparent 0 2rem, rgb(188 91 86 / 16%) 2rem calc(2rem + 1px), transparent calc(2rem + 1px)),
+    repeating-linear-gradient(to bottom, #f8f6ed 0 2.1rem, #e5e3db 2.1rem calc(2.1rem + 1px));
+  padding: 2rem clamp(1.4rem, 5vw, 3.2rem) 2rem clamp(2.8rem, 8vw, 4.5rem);
+  color: #2b3444;
+}
+
+.meta {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  color: #586781;
+  font-family: var(--font-ui-mono), monospace;
+  font-size: 0.54rem;
+  font-weight: 600;
+  letter-spacing: 0.07em;
+}
+
+.rule {
+  width: 1.2rem;
+  height: 1px;
+  background: #a7a9a4;
+}
+
+.indexTag {
+  margin-left: auto;
+  padding: 0.15rem 0.4rem;
+  background: #ede9dc;
+  border: 1px solid #d4cebe;
+  font-size: 0.52rem;
+  color: #635d4f;
+}
+
+.note blockquote {
+  max-width: 28ch;
+  margin: 1rem 0 0;
+  font-family: var(--font-display), sans-serif;
+  font-size: clamp(1.4rem, 3.8cqw, 2.1rem);
+  line-height: 1.2;
+  letter-spacing: -0.025em;
+  min-height: 5.5rem;
+}
+
+.credit {
+  margin: 0.8rem 0 0;
+  color: #586781;
+  font-size: 0.68rem;
+  font-style: italic;
+}
+
+.controlsRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 1.2rem;
+  padding-top: 0.75rem;
+  border-top: 1px dashed #cbcfc6;
+}
+
+.noteNav {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.noteNavBtn {
+  display: grid;
+  place-items: center;
+  width: 1.8rem;
+  height: 1.8rem;
+  border: 1px solid #c4c1b5;
+  background: #fbf9f2;
+  color: #3e4756;
+  cursor: pointer;
+  transition: all 120ms ease;
+}
+
+.noteNavBtn:hover {
+  background: #edeae0;
+  border-color: #9c998c;
+}
+
+.stampTag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-family: var(--font-ui-mono), monospace;
+  font-size: 0.54rem;
+  font-weight: 700;
+  color: #79715d;
+  letter-spacing: 0.06em;
+}
+
+.corner {
+  position: absolute;
+  right: 1rem;
+  bottom: 0.7rem;
+  color: #586781;
+  font-family: var(--font-ui-mono), monospace;
+  font-size: 1rem;
+}
+
+@supports (animation-timeline: view()) {
+  .note {
+    animation: note-arrive 1ms linear both;
+    animation-timeline: view();
+    animation-range: entry 0% entry 35%;
+  }
+}
+
+@keyframes note-arrive {
+  from {
+    opacity: 0.6;
+    transform: translateY(0.75rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .note {
+    animation: none;
+  }
+}

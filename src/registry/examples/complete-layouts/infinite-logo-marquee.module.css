@@ -1,0 +1,272 @@
+.container {
+  width: 100%;
+  min-height: 340px;
+  background: #090b10;
+  border-radius: var(--radius-lg, 12px);
+  border: 1px solid var(--border-subtle, rgba(255, 255, 255, 0.08));
+  padding: 1.75rem;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.75rem;
+  font-family: var(--font-mono, monospace);
+  color: #38bdf8;
+  background: rgba(56, 189, 248, 0.1);
+  padding: 0.25rem 0.65rem;
+  border-radius: 4px;
+}
+
+.controlsRow {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+}
+
+.ctrlBtn {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #cbd5e1;
+  padding: 0.35rem 0.5rem;
+  border-radius: 4px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ctrlBtn:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+}
+
+.activeCtrl {
+  background: rgba(56, 189, 248, 0.15);
+  border-color: #38bdf8;
+  color: #38bdf8;
+}
+
+.speedGroup {
+  display: flex;
+  gap: 0.2rem;
+  background: rgba(255, 255, 255, 0.03);
+  padding: 0.2rem;
+  border-radius: 4px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.speedBtn {
+  font-size: 0.7rem;
+  font-family: var(--font-mono, monospace);
+  text-transform: capitalize;
+  background: transparent;
+  border: none;
+  color: #94a3b8;
+  padding: 0.2rem 0.45rem;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.speedBtn:hover {
+  color: #ffffff;
+}
+
+.activeSpeed {
+  background: rgba(255, 255, 255, 0.12);
+  color: #ffffff;
+  font-weight: 600;
+}
+
+.accentToggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  font-size: 0.75rem;
+  font-family: var(--font-mono, monospace);
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #cbd5e1;
+  padding: 0.3rem 0.6rem;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.accentActive {
+  background: rgba(232, 121, 249, 0.15);
+  border-color: #e879f9;
+  color: #e879f9;
+}
+
+.marqueeViewport {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  padding: 1.5rem 0;
+  display: flex;
+}
+
+.maskLeft,
+.maskRight {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 60px;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.maskLeft {
+  left: 0;
+  background: linear-gradient(to right, #090b10 15%, transparent 100%);
+}
+
+.maskRight {
+  right: 0;
+  background: linear-gradient(to left, #090b10 15%, transparent 100%);
+}
+
+.marqueeTrack {
+  display: flex;
+  gap: 1rem;
+  width: max-content;
+  animation: scrollLoop 20s linear infinite;
+}
+
+.reverse {
+  animation-direction: reverse;
+}
+
+.slow {
+  animation-duration: 35s;
+}
+
+.normal {
+  animation-duration: 20s;
+}
+
+.fast {
+  animation-duration: 10s;
+}
+
+.pauseOnHover:hover .marqueeTrack {
+  animation-play-state: paused;
+}
+
+.paused .marqueeTrack {
+  animation-play-state: paused;
+}
+
+@keyframes scrollLoop {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .marqueeTrack {
+    animation: none;
+  }
+}
+
+.techCard {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  background: rgba(255, 255, 255, 0.025);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+  padding: 0.75rem 1.15rem;
+  white-space: nowrap;
+  transition: all 0.2s ease;
+}
+
+.techCard:hover {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.18);
+  transform: translateY(-2px);
+}
+
+.iconCircle {
+  width: 32px;
+  height: 32px;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.05);
+  color: #cbd5e1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.textGroup {
+  display: flex;
+  flex-direction: column;
+}
+
+.techName {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #f1f5f9;
+}
+
+.techCat {
+  font-size: 0.65rem;
+  font-family: var(--font-mono, monospace);
+  color: #64748b;
+  text-transform: uppercase;
+}
+
+.accentCard {
+  border-color: rgba(56, 189, 248, 0.25);
+  background: rgba(56, 189, 248, 0.03);
+}
+
+.accentCard .iconCircle {
+  background: rgba(56, 189, 248, 0.15);
+  color: #38bdf8;
+}
+
+.accentCard .techName {
+  color: #ffffff;
+}
+
+.footerNote {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: auto;
+  padding-top: 1rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  font-size: 0.7rem;
+  font-family: var(--font-mono, monospace);
+  color: #64748b;
+}
+
+.checkboxLabel {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  cursor: pointer;
+  color: #cbd5e1;
+}
+
+.checkboxLabel input {
+  accent-color: #38bdf8;
+}

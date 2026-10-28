@@ -1,0 +1,141 @@
+.container {
+  position: relative;
+  width: 100%;
+  min-height: 400px;
+  background: #090a12;
+  border-radius: 8px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 1.25rem;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.hud {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 10;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.35rem 0.65rem;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 4px;
+}
+
+.icon {
+  color: #10b981;
+}
+
+.title {
+  font-family: var(--font-mono, monospace);
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  color: #e2e8f0;
+  font-weight: 600;
+}
+
+.controls {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.controlBtn,
+.cycleBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.05);
+  color: #f8fafc;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.controlBtn {
+  width: 28px;
+  height: 28px;
+}
+
+.cycleBtn {
+  height: 28px;
+  padding: 0 0.6rem;
+  font-family: var(--font-mono, monospace);
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+}
+
+.controlBtn:hover,
+.cycleBtn:hover {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.displayArea {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 2.5rem 1rem;
+}
+
+.metricLabel {
+  font-family: var(--font-mono, monospace);
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  color: #94a3b8;
+  margin-bottom: 0.75rem;
+  font-weight: 600;
+}
+
+.numberWrapper {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 0.25rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.digits {
+  font-family: var(--font-mono, monospace);
+  font-size: clamp(2.5rem, 6cqw, 4.2rem);
+  font-weight: 800;
+  color: #f8fafc;
+  letter-spacing: -0.03em;
+  text-shadow: 0 0 24px rgba(16, 185, 129, 0.25);
+}
+
+.affix {
+  font-family: var(--font-mono, monospace);
+  font-size: clamp(1.2rem, 3cqw, 1.8rem);
+  color: #10b981;
+  font-weight: 700;
+}
+
+.track {
+  width: 180px;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 2px;
+  margin-top: 1.5rem;
+  overflow: hidden;
+}
+
+.progressBar {
+  height: 100%;
+  background: #10b981;
+  border-radius: 2px;
+  box-shadow: 0 0 8px #10b981;
+  transition: width 0.05s linear;
+}

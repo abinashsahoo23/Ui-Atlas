@@ -1,0 +1,320 @@
+.wrapper {
+  width: 100%;
+  min-height: 440px;
+  background: #090b10;
+  border-radius: var(--radius-lg, 12px);
+  border: 1px solid var(--border-subtle, rgba(255, 255, 255, 0.08));
+  padding: 1.75rem;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.75rem;
+  font-family: var(--font-mono, monospace);
+  color: #38bdf8;
+  background: rgba(56, 189, 248, 0.1);
+  padding: 0.25rem 0.65rem;
+  border-radius: 4px;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.presetBtn {
+  font-size: 0.75rem;
+  font-family: var(--font-mono, monospace);
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: #94a3b8;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.presetBtn:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+}
+
+.activePreset {
+  background: rgba(56, 189, 248, 0.15);
+  border-color: #38bdf8;
+  color: #38bdf8;
+  font-weight: 600;
+}
+
+.resetBtn {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #94a3b8;
+  padding: 0.35rem;
+  border-radius: 4px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.resetBtn:hover {
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.viewport {
+  position: relative;
+  width: 100%;
+  height: 320px;
+  border-radius: var(--radius-md, 8px);
+  overflow: hidden;
+  user-select: none;
+  cursor: ew-resize;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.renderedLayer {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 70% 30%, #1e1b4b 0%, #030712 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.wireframeLayer {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  background: #020617;
+}
+
+.layerContent {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  box-sizing: border-box;
+}
+
+/* Production Visuals */
+.productionHero {
+  position: relative;
+  max-width: 440px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.productionGlow {
+  position: absolute;
+  width: 220px;
+  height: 140px;
+  background: radial-gradient(circle, rgba(129, 140, 248, 0.3) 0%, transparent 70%);
+  filter: blur(30px);
+  pointer-events: none;
+}
+
+.badgeProduction {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.7rem;
+  font-family: var(--font-mono, monospace);
+  color: #818cf8;
+  background: rgba(129, 140, 248, 0.15);
+  border: 1px solid rgba(129, 140, 248, 0.3);
+  padding: 0.2rem 0.5rem;
+  border-radius: 9999px;
+  margin-bottom: 0.75rem;
+}
+
+.renderedTitle {
+  margin: 0 0 0.5rem 0;
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #ffffff;
+  letter-spacing: -0.01em;
+}
+
+.renderedText {
+  margin: 0 0 1.25rem 0;
+  font-size: 0.85rem;
+  line-height: 1.5;
+  color: #cbd5e1;
+}
+
+.renderedStats {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.statBox {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.statBox span {
+  font-size: 0.7rem;
+  font-family: var(--font-mono, monospace);
+  color: #94a3b8;
+}
+
+.statBox strong {
+  font-size: 1.1rem;
+  font-family: var(--font-mono, monospace);
+  color: #818cf8;
+}
+
+/* Wireframe Visuals */
+.wireframeHero {
+  position: relative;
+  max-width: 440px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.wireframeGrid {
+  position: absolute;
+  inset: -40px;
+  background-image: 
+    linear-gradient(to right, rgba(16, 185, 129, 0.1) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(16, 185, 129, 0.1) 1px, transparent 1px);
+  background-size: 20px 20px;
+  pointer-events: none;
+}
+
+.badgeWireframe {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.7rem;
+  font-family: var(--font-mono, monospace);
+  color: #34d399;
+  background: rgba(16, 185, 129, 0.1);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  padding: 0.2rem 0.5rem;
+  border-radius: 9999px;
+  margin-bottom: 0.75rem;
+}
+
+.wireframeTitle {
+  margin: 0 0 0.5rem 0;
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #34d399;
+  font-family: var(--font-mono, monospace);
+  letter-spacing: -0.01em;
+}
+
+.wireframeText {
+  margin: 0 0 1.25rem 0;
+  font-size: 0.85rem;
+  line-height: 1.5;
+  color: #6ee7b7;
+  font-family: var(--font-mono, monospace);
+}
+
+.wireframeStats {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.wireframeBox {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.wireframeBox span {
+  font-size: 0.7rem;
+  font-family: var(--font-mono, monospace);
+  color: #059669;
+}
+
+.wireframeBox strong {
+  font-size: 1.1rem;
+  font-family: var(--font-mono, monospace);
+  color: #34d399;
+}
+
+/* Corner Tags */
+.tagAfter {
+  position: absolute;
+  bottom: 0.75rem;
+  right: 0.75rem;
+  font-size: 0.65rem;
+  font-family: var(--font-mono, monospace);
+  color: #818cf8;
+  background: rgba(0, 0, 0, 0.6);
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+}
+
+.tagBefore {
+  position: absolute;
+  top: 0.75rem;
+  left: 0.75rem;
+  font-size: 0.65rem;
+  font-family: var(--font-mono, monospace);
+  color: #34d399;
+  background: rgba(0, 0, 0, 0.6);
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+}
+
+/* Divider Handle */
+.handle {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  transform: translateX(-50%);
+  pointer-events: none;
+}
+
+.handleLine {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  width: 2px;
+  background: #ffffff;
+  box-shadow: 0 0 12px rgba(255, 255, 255, 0.8);
+}
+
+.handleKnob {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: #ffffff;
+  color: #0f172a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.5);
+}

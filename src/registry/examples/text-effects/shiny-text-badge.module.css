@@ -1,0 +1,179 @@
+.container {
+  position: relative;
+  width: 100%;
+  min-height: 400px;
+  background: #08090d;
+  border-radius: 8px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 1.25rem;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.hud {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 10;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.35rem 0.65rem;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 4px;
+}
+
+.icon {
+  color: #fbbf24;
+}
+
+.title {
+  font-family: var(--font-mono, monospace);
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  color: #e2e8f0;
+  font-weight: 600;
+}
+
+.controls {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.controlBtn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 4px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.05);
+  color: #f8fafc;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.controlBtn:hover {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.sliderGroup {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  background: rgba(255, 255, 255, 0.04);
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.label {
+  font-family: var(--font-mono, monospace);
+  font-size: 0.65rem;
+  color: #94a3b8;
+  font-weight: 600;
+}
+
+.slider {
+  width: 65px;
+  height: 4px;
+  accent-color: #fbbf24;
+  cursor: pointer;
+}
+
+.displayArea {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 2.5rem 1rem;
+}
+
+.pillBadge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  padding: 0.45rem 1rem;
+  border-radius: 9999px;
+  border: 1px solid;
+  margin-bottom: 1.5rem;
+  backdrop-filter: blur(8px);
+}
+
+.pip {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  box-shadow: 0 0 8px currentColor;
+}
+
+.shinyText {
+  font-family: var(--font-mono, monospace);
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  background: linear-gradient(
+    115deg,
+    var(--base-color) 0%,
+    var(--base-color) 35%,
+    var(--shimmer-color) 50%,
+    var(--base-color) 65%,
+    var(--base-color) 100%
+  );
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer linear infinite;
+  display: inline-block;
+}
+
+.headline {
+  font-family: var(--font-sans, sans-serif);
+  font-size: clamp(1.6rem, 3.5cqw, 2.5rem);
+  font-weight: 800;
+  letter-spacing: -0.01em;
+  margin: 0 0 1rem 0;
+  background: linear-gradient(
+    115deg,
+    var(--base-color) 0%,
+    var(--base-color) 35%,
+    var(--shimmer-color) 50%,
+    var(--base-color) 65%,
+    var(--base-color) 100%
+  );
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer linear infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: 100% 0;
+  }
+  100% {
+    background-position: -100% 0;
+  }
+}
+
+.caption {
+  font-family: var(--font-mono, monospace);
+  font-size: 0.75rem;
+  color: #64748b;
+  max-width: 480px;
+  margin: 0;
+  line-height: 1.5;
+}

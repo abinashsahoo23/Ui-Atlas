@@ -1,0 +1,236 @@
+.container {
+  position: relative;
+  width: 100%;
+  min-height: 440px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border-radius: var(--radius-lg, 12px);
+  border: 1px solid var(--border-subtle, rgba(255, 255, 255, 0.08));
+  background: #090b10;
+  padding: 2.5rem 1.5rem;
+  box-sizing: border-box;
+  perspective: 1000px;
+}
+
+/* Preset variables */
+.mercury {
+  --orb-gradient: radial-gradient(circle at 35% 30%, #ffffff 0%, #cbd5e1 25%, #64748b 55%, #1e293b 80%, #090d16 100%);
+  --hotspot-color: rgba(255, 255, 255, 0.9);
+  --rim-glow: rgba(148, 163, 184, 0.4);
+  --accent-color: #cbd5e1;
+}
+
+.iridescent {
+  --orb-gradient: radial-gradient(circle at 35% 30%, #fdf4ff 0%, #e879f9 25%, #818cf8 50%, #06b6d4 75%, #0f172a 100%);
+  --hotspot-color: rgba(255, 255, 255, 0.95);
+  --rim-glow: rgba(232, 121, 249, 0.5);
+  --accent-color: #d946ef;
+}
+
+.cyberpunk {
+  --orb-gradient: radial-gradient(circle at 35% 30%, #fef08a 0%, #f97316 28%, #dc2626 55%, #4c1d95 85%, #050510 100%);
+  --hotspot-color: rgba(254, 240, 138, 0.95);
+  --rim-glow: rgba(249, 115, 22, 0.5);
+  --accent-color: #f97316;
+}
+
+.ambientBackdrop {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 50% 50%, var(--rim-glow) 0%, transparent 65%);
+  opacity: 0.15;
+  pointer-events: none;
+  filter: blur(40px);
+}
+
+.orbStage {
+  position: relative;
+  width: 180px;
+  height: 180px;
+  transform-style: preserve-3d;
+  transition: transform 0.15s cubic-bezier(0.2, 0, 0.2, 1);
+  margin-bottom: 2rem;
+  cursor: grab;
+}
+
+.chromeSphere {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: var(--orb-gradient);
+  box-shadow:
+    inset -10px -10px 24px rgba(0, 0, 0, 0.8),
+    inset 10px 10px 20px rgba(255, 255, 255, 0.5),
+    0 16px 40px rgba(0, 0, 0, 0.7);
+  overflow: hidden;
+  transition: filter 0.2s ease;
+}
+
+.specularHotspot {
+  position: absolute;
+  top: 18%;
+  left: 24%;
+  width: 45px;
+  height: 30px;
+  border-radius: 50%;
+  background: var(--hotspot-color);
+  filter: blur(6px);
+  pointer-events: none;
+  opacity: 0.85;
+  transition: transform 0.1s ease-out;
+}
+
+.fluidRefraction {
+  position: absolute;
+  inset: 5%;
+  border-radius: 50%;
+  background: linear-gradient(135deg, transparent 40%, rgba(255, 255, 255, 0.2) 60%, transparent 80%);
+  mix-blend-mode: overlay;
+  pointer-events: none;
+  transition: transform 0.2s ease-out;
+}
+
+.rimLight {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 1px solid var(--rim-glow);
+  box-shadow: 0 0 20px var(--rim-glow);
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+.orbShadow {
+  position: absolute;
+  bottom: -32px;
+  left: 15%;
+  width: 70%;
+  height: 16px;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.6);
+  filter: blur(10px);
+  transition: transform 0.15s ease-out;
+  pointer-events: none;
+}
+
+.controlPanel {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  max-width: 380px;
+  background: rgba(18, 22, 34, 0.85);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid var(--border-subtle, rgba(255, 255, 255, 0.1));
+  border-radius: var(--radius-md, 8px);
+  padding: 1.25rem;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.4);
+  display: flex;
+  flex-direction: column;
+  gap: 0.85rem;
+}
+
+.panelHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 0.75rem;
+  font-family: var(--font-mono, monospace);
+  color: var(--accent-color);
+  background: rgba(255, 255, 255, 0.04);
+  padding: 0.2rem 0.55rem;
+  border-radius: 4px;
+}
+
+.resetBtn {
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #94a3b8;
+  padding: 0.3rem;
+  border-radius: 4px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.resetBtn:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: #ffffff;
+}
+
+.presetSelectors {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.4rem;
+}
+
+.presetBtn {
+  font-size: 0.75rem;
+  text-transform: capitalize;
+  padding: 0.35rem 0.5rem;
+  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: #94a3b8;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.presetBtn:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: #ffffff;
+}
+
+.activePreset {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: var(--accent-color);
+  color: #ffffff;
+  font-weight: 600;
+}
+
+.sliderControl {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.sliderLabel {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.75rem;
+  font-family: var(--font-mono, monospace);
+  color: #cbd5e1;
+}
+
+.sliderVal {
+  color: var(--accent-color);
+}
+
+.rangeInput {
+  accent-color: var(--accent-color);
+  cursor: pointer;
+}
+
+.orientationStatus {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.7rem;
+  font-family: var(--font-mono, monospace);
+  color: #64748b;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  padding-top: 0.5rem;
+}

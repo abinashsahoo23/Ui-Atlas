@@ -1,0 +1,455 @@
+/* =========================================================================
+   KINETIC TEXT EFFECTS DESIGN SYSTEM
+   Palette: Deep Black (#08080D), Neon Red (#FF334F), Electric Indigo (#7865FF)
+   ========================================================================= */
+
+/* -------------------------------------------------------------------------
+   1. DECRYPTED TEXT: CYBER MATRIX CIPHER STREAM
+   ------------------------------------------------------------------------- */
+.decryptedWrapper {
+  display: inline-block;
+  font-family: var(--font-tech-mono, monospace);
+  letter-spacing: 0.1em;
+  transition: color 0.15s ease, text-shadow 0.2s ease;
+  user-select: none;
+  cursor: default;
+}
+
+.glowRed {
+  color: var(--brand-neon-red, #ff334f);
+}
+
+.glowIndigo {
+  color: var(--brand-electric-indigo, #7865ff);
+}
+
+.decodingActive {
+  animation: cipherJitter 0.08s steps(2, start) infinite;
+}
+
+@keyframes cipherJitter {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-0.5px); }
+  100% { transform: translateY(0.5px); }
+}
+
+/* -------------------------------------------------------------------------
+   2. CYBER GLITCH TEXT: CHROMATIC RGB SLICE & DISPLACEMENT
+   ------------------------------------------------------------------------- */
+.glitchTextRoot {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  user-select: none;
+  font-family: inherit;
+  font-weight: inherit;
+  line-height: inherit;
+}
+
+.glitchTextBase {
+  display: inline-block;
+  color: #f8fafc;
+  position: relative;
+  z-index: 2;
+}
+
+.glitchTextSliceRed,
+.glitchTextSliceCyan {
+  position: absolute;
+  inset: 0;
+  display: inline-block;
+  pointer-events: none;
+  user-select: none;
+  font-family: inherit;
+  font-weight: inherit;
+  line-height: inherit;
+}
+
+.glitchTextSliceRed {
+  color: var(--brand-neon-red, #ff334f);
+  clip-path: polygon(0 20%, 100% 20%, 100% 48%, 0 48%);
+  transform: translate(-2px, 0);
+  opacity: 0.85;
+  animation: glitchRedSliceLoop 3.6s infinite ease-in-out;
+  text-shadow: -1px 0 var(--brand-neon-red, #ff334f);
+}
+
+.glitchTextSliceCyan {
+  color: #00f5ff;
+  clip-path: polygon(0 54%, 100% 54%, 100% 82%, 0 82%);
+  transform: translate(2px, 0);
+  opacity: 0.85;
+  animation: glitchCyanSliceLoop 3.6s infinite ease-in-out;
+  text-shadow: 1px 0 var(--brand-electric-indigo, #7865ff);
+}
+
+@keyframes glitchRedSliceLoop {
+  0%, 86%, 100% {
+    transform: translate(-1.5px, 0);
+    clip-path: polygon(0 20%, 100% 20%, 100% 48%, 0 48%);
+    opacity: 0.75;
+  }
+  88% {
+    transform: translate(-5px, 2px);
+    clip-path: polygon(0 10%, 100% 10%, 100% 38%, 0 38%);
+    opacity: 1;
+  }
+  90% {
+    transform: translate(3px, -2px);
+    clip-path: polygon(0 60%, 100% 60%, 100% 92%, 0 92%);
+    opacity: 0.9;
+  }
+  92% {
+    transform: translate(-3px, 1px);
+    clip-path: polygon(0 25%, 100% 25%, 100% 55%, 0 55%);
+    opacity: 1;
+  }
+}
+
+@keyframes glitchCyanSliceLoop {
+  0%, 86%, 100% {
+    transform: translate(1.5px, 0);
+    clip-path: polygon(0 54%, 100% 54%, 100% 82%, 0 82%);
+    opacity: 0.75;
+  }
+  88% {
+    transform: translate(5px, -2px);
+    clip-path: polygon(0 65%, 100% 65%, 100% 95%, 0 95%);
+    opacity: 1;
+  }
+  90% {
+    transform: translate(-3px, 1px);
+    clip-path: polygon(0 15%, 100% 15%, 100% 45%, 0 45%);
+    opacity: 0.9;
+  }
+  92% {
+    transform: translate(4px, -1px);
+    clip-path: polygon(0 40%, 100% 40%, 100% 70%, 0 70%);
+    opacity: 1;
+  }
+}
+
+.glitchTextRoot:hover .glitchTextBase {
+  text-shadow: 0 0 24px rgba(255, 51, 79, 0.6);
+}
+
+.glitchTextRoot:hover .glitchTextSliceRed {
+  animation: glitchRedOverclock 0.18s steps(2, start) infinite;
+  opacity: 1;
+}
+
+.glitchTextRoot:hover .glitchTextSliceCyan {
+  animation: glitchCyanOverclock 0.18s steps(2, start) infinite;
+  opacity: 1;
+}
+
+@keyframes glitchRedOverclock {
+  0% { transform: translate(-4px, 1px); clip-path: polygon(0 15%, 100% 15%, 100% 42%, 0 42%); }
+  50% { transform: translate(3px, -2px); clip-path: polygon(0 50%, 100% 50%, 100% 80%, 0 80%); }
+  100% { transform: translate(-5px, 2px); clip-path: polygon(0 28%, 100% 28%, 100% 60%, 0 60%); }
+}
+
+@keyframes glitchCyanOverclock {
+  0% { transform: translate(4px, -1px); clip-path: polygon(0 58%, 100% 58%, 100% 85%, 0 85%); }
+  50% { transform: translate(-3px, 2px); clip-path: polygon(0 20%, 100% 20%, 100% 48%, 0 48%); }
+  100% { transform: translate(5px, -2px); clip-path: polygon(0 70%, 100% 70%, 100% 98%, 0 98%); }
+}
+
+/* -------------------------------------------------------------------------
+   3. GLITCH AURORA TEXT: PRISMATIC FLOW + CHROMATIC RGB SLICE
+   ------------------------------------------------------------------------- */
+.glitchAurora {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+  user-select: none;
+}
+
+.glitchBase {
+  display: inline-block;
+  background: linear-gradient(
+    120deg,
+    #ff334f 0%,
+    #ff6b81 22%,
+    #a855f7 48%,
+    #7865ff 72%,
+    #00f5ff 100%
+  );
+  background-size: 260% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: auroraGradientFlow 6s ease infinite alternate;
+  filter: drop-shadow(0 0 24px rgba(255, 51, 79, 0.35));
+  transition: filter 0.3s ease;
+}
+
+@keyframes auroraGradientFlow {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 100% 50%; }
+}
+
+/* Dual Chromatic Slices on Hover */
+.glitchSliceRed,
+.glitchSliceIndigo {
+  position: absolute;
+  inset: 0;
+  display: inline-block;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.15s ease;
+}
+
+.glitchSliceRed {
+  color: #ff334f;
+  clip-path: polygon(0 18%, 100% 18%, 100% 46%, 0 46%);
+}
+
+.glitchSliceIndigo {
+  color: #00f5ff;
+  clip-path: polygon(0 58%, 100% 58%, 100% 86%, 0 86%);
+}
+
+.glitchAurora:hover .glitchBase {
+  filter: drop-shadow(0 0 35px rgba(255, 51, 79, 0.65));
+}
+
+.glitchAurora:hover .glitchSliceRed {
+  opacity: 0.9;
+  animation: glitchSliceRedJitter 0.22s steps(2, start) infinite;
+}
+
+.glitchAurora:hover .glitchSliceIndigo {
+  opacity: 0.9;
+  animation: glitchSliceIndigoJitter 0.22s steps(2, start) infinite;
+}
+
+@keyframes glitchSliceRedJitter {
+  0% { transform: translate(-4px, 1px); }
+  50% { transform: translate(-2px, -2px); }
+  100% { transform: translate(-5px, 2px); }
+}
+
+@keyframes glitchSliceIndigoJitter {
+  0% { transform: translate(4px, -1px); }
+  50% { transform: translate(2px, 2px); }
+  100% { transform: translate(5px, -2px); }
+}
+
+/* -------------------------------------------------------------------------
+   4. SHIMMER TEXT: PRISMATIC LIGHT-BEAM SHEEN
+   ------------------------------------------------------------------------- */
+.shimmerWrapper {
+  display: inline-block;
+  background-size: 200% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: textShimmerSweep linear infinite;
+  will-change: background-position;
+}
+
+.shimmerFast { animation-duration: 2.8s; }
+.shimmerNormal { animation-duration: 4.8s; }
+.shimmerSlow { animation-duration: 7.5s; }
+
+.shimmerThemeSilver {
+  background-image: linear-gradient(
+    115deg,
+    #94a3b8 0%,
+    #94a3b8 35%,
+    #ffffff 50%,
+    #94a3b8 65%,
+    #94a3b8 100%
+  );
+}
+
+.shimmerThemeRed {
+  background-image: linear-gradient(
+    115deg,
+    #ff334f 0%,
+    #ff334f 35%,
+    #ffffff 50%,
+    #ff334f 65%,
+    #ff334f 100%
+  );
+}
+
+.shimmerThemeIndigo {
+  background-image: linear-gradient(
+    115deg,
+    #7865ff 0%,
+    #7865ff 35%,
+    #ffffff 50%,
+    #7865ff 65%,
+    #7865ff 100%
+  );
+}
+
+@keyframes textShimmerSweep {
+  0% { background-position: 100% 0; }
+  100% { background-position: -100% 0; }
+}
+
+/* -------------------------------------------------------------------------
+   5. COUNTER TICKER: MECHANICAL ODOMETER NUMBER ROLL
+   ------------------------------------------------------------------------- */
+.counterWrapper {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 0.2rem;
+  font-family: var(--font-tech-mono, monospace);
+  font-weight: 800;
+  letter-spacing: 0.05em;
+}
+
+.counterNum {
+  font-variant-numeric: tabular-nums;
+  color: #ffffff;
+  text-shadow: 0 0 12px rgba(255, 255, 255, 0.35);
+  transition: color 0.2s ease;
+}
+
+.counterSuffix {
+  font-size: 0.72em;
+  color: var(--brand-electric-indigo, #7865ff);
+  font-weight: 700;
+}
+
+/* -------------------------------------------------------------------------
+   6. WAVE RIPPLE HEADING: INTERACTIVE SINE WAVE TYPOGRAPHY
+   ------------------------------------------------------------------------- */
+.waveRippleWrapper {
+  display: inline-flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  cursor: default;
+  column-gap: 0.24em;
+  max-width: 100%;
+}
+
+.waveRippleWord {
+  display: inline-flex;
+  white-space: nowrap;
+}
+
+.waveRippleChar {
+  display: inline-block;
+  transition: transform 0.22s cubic-bezier(0.34, 1.56, 0.64, 1), color 0.18s ease;
+  will-change: transform;
+}
+
+.waveRippleWrapper:hover .waveRippleChar {
+  animation: sineWaveBounce 0.6s ease-in-out;
+  animation-delay: calc(var(--wave-i, 0) * 22ms);
+}
+
+@keyframes sineWaveBounce {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-7px); color: var(--brand-neon-red, #ff334f); }
+  100% { transform: translateY(0); }
+}
+
+.periodRed {
+  color: var(--brand-neon-red, #ff334f);
+  text-shadow: 0 0 14px var(--brand-neon-red, #ff334f);
+  display: inline-block;
+  animation: periodPulse 1.8s ease-in-out infinite alternate;
+}
+
+.periodIndigo {
+  color: var(--brand-electric-indigo, #7865ff);
+  text-shadow: 0 0 14px var(--brand-electric-indigo, #7865ff);
+  display: inline-block;
+  animation: periodPulse 1.8s ease-in-out infinite alternate;
+}
+
+@keyframes periodPulse {
+  0% { transform: scale(0.9); opacity: 0.75; }
+  100% { transform: scale(1.25); opacity: 1; }
+}
+
+/* -------------------------------------------------------------------------
+   7. HOVER SCRAMBLE TITLE: TACTILE CYBER DESCRAMBLE
+   ------------------------------------------------------------------------- */
+.hoverScrambleText {
+  display: inline-block;
+  position: relative;
+  transition: color 0.2s ease, text-shadow 0.2s ease;
+  font-family: inherit;
+  font-variant-numeric: tabular-nums;
+  max-width: 100%;
+}
+
+.hoverScrambling {
+  color: #ffffff;
+  text-shadow: 0 0 10px var(--brand-electric-indigo, #7865ff);
+}
+
+/* -------------------------------------------------------------------------
+   8. HOLO WIREFRAME NUMBER: 3D FLOATING GRADIENT NUMERAL
+   ------------------------------------------------------------------------- */
+.holoWireframeNum {
+  position: relative;
+  display: inline-block;
+  font-family: var(--font-tech-mono, monospace);
+  font-size: clamp(2rem, 4vw, 3.25rem);
+  font-weight: 900;
+  line-height: 1;
+  user-select: none;
+}
+
+.wireframeBackdrop {
+  display: block;
+  -webkit-text-stroke: 1.5px rgba(120, 101, 255, 0.45);
+  color: transparent;
+  filter: drop-shadow(0 0 8px rgba(120, 101, 255, 0.35));
+  transition: all 0.3s ease;
+}
+
+.wireframeFront {
+  position: absolute;
+  inset: 0;
+  display: block;
+  background: linear-gradient(180deg, #ffffff 0%, rgba(255, 51, 79, 0.8) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  opacity: 0.25;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+/* When parent card hovers, ignite wireframe */
+.holoWireframeNum:hover .wireframeBackdrop,
+:global([class*="workflowCard"]):hover .wireframeBackdrop {
+  -webkit-text-stroke-color: var(--brand-neon-red, #ff334f);
+  filter: drop-shadow(0 0 16px rgba(255, 51, 79, 0.65));
+}
+
+.holoWireframeNum:hover .wireframeFront,
+:global([class*="workflowCard"]):hover .wireframeFront {
+  opacity: 0.9;
+  transform: translate(-1.5px, -1.5px);
+}
+
+/* -------------------------------------------------------------------------
+   REDUCED MOTION SUPPORT
+   ------------------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  .staggeredChar,
+  .glitchBase,
+  .glitchTextSliceRed,
+  .glitchTextSliceCyan,
+  .glitchSliceRed,
+  .glitchSliceIndigo,
+  .shimmerWrapper,
+  .waveRippleChar,
+  .periodRed,
+  .periodIndigo,
+  .decodingActive {
+    animation: none !important;
+    transform: none !important;
+    filter: none !important;
+    opacity: 1 !important;
+  }
+}

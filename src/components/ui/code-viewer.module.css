@@ -1,0 +1,230 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: #0d0e15;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.035);
+  color: #e2e8f0;
+  overflow: hidden;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  border-bottom: 1px solid var(--line);
+  background: #11121b;
+  padding: 0.65rem 0.75rem;
+}
+
+.tabs {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  overflow-x: auto;
+  max-width: 100%;
+  scrollbar-width: none;
+}
+
+.tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  border: 1px solid transparent;
+  background: transparent;
+  padding: 0.4rem 0.75rem;
+  color: #8fa0be;
+  cursor: pointer;
+  font-family: var(--font-ui-mono), monospace;
+  font-size: 0.72rem;
+  font-weight: 550;
+  transition: all 120ms ease;
+}
+
+.tab:hover {
+  color: #f1f5f9;
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.tab[aria-selected="true"] {
+  border-color: rgba(120, 101, 255, 0.34);
+  background: rgba(120, 101, 255, 0.12);
+  color: #c0b6ff;
+  box-shadow: inset 0 -2px 0 var(--brand-electric-indigo);
+}
+
+.tab:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 1px;
+}
+
+.actions {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  border: 1px solid rgba(89, 214, 160, 0.24);
+  background: rgba(89, 214, 160, 0.07);
+  padding: 0.2rem 0.5rem;
+  color: #8be2ba;
+  font-family: var(--font-ui-mono), monospace;
+  font-size: 0.62rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.badgeDot {
+  width: 0.35rem;
+  height: 0.35rem;
+  border-radius: 50%;
+  background: #59d6a0;
+  box-shadow: 0 0 10px rgba(89, 214, 160, 0.42);
+}
+
+.promptButton,
+.copyButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  border: 1px solid rgba(120, 101, 255, 0.3);
+  border-radius: 6px;
+  background: rgba(120, 101, 255, 0.1);
+  padding: 0.38rem 0.75rem;
+  color: #d8d1ff;
+  cursor: pointer;
+  font-family: var(--font-ui-mono), monospace;
+  font-size: 0.7rem;
+  font-weight: 600;
+  transition: color 150ms ease, border-color 150ms ease, background-color 150ms ease, box-shadow 150ms ease;
+}
+
+.promptButton:hover,
+.copyButton:hover {
+  border-color: rgba(120, 101, 255, 0.62);
+  background: rgba(120, 101, 255, 0.18);
+  color: #ffffff;
+  box-shadow: 0 0 18px rgba(120, 101, 255, 0.12);
+}
+
+.promptButton[data-copied="true"],
+.copyButton[data-copied="true"] {
+  border-color: rgba(89, 214, 160, 0.5);
+  background: rgba(89, 214, 160, 0.12);
+  color: #8be2ba;
+}
+
+.promptButton:focus-visible,
+.copyButton:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 1px;
+}
+
+.panel {
+  position: relative;
+  max-height: 34rem;
+  overflow: auto;
+  background: #0b0c12;
+}
+
+.codeBlock {
+  margin: 0;
+  padding: 1rem 0;
+  font-family: var(--font-ui-mono), Consolas, "Courier New", monospace;
+  font-size: 0.77rem;
+  line-height: 1.6;
+  tab-size: 2;
+  white-space: pre;
+}
+
+.line {
+  display: flex;
+  padding: 0 1.25rem 0 0;
+}
+
+.line:hover {
+  background: rgba(255, 255, 255, 0.025);
+}
+
+.lineNumber {
+  display: inline-block;
+  min-width: 3.25rem;
+  padding-right: 1.25rem;
+  text-align: right;
+  color: #475569;
+  user-select: none;
+  flex-shrink: 0;
+}
+
+.lineContent {
+  color: #cbd5e1;
+  word-break: normal;
+  overflow-wrap: break-word;
+  white-space: pre;
+}
+
+/* Syntax token highlights */
+.tokenKeyword {
+  color: #c084fc;
+  font-weight: 600;
+}
+
+.tokenString {
+  color: #86efac;
+}
+
+.tokenComment {
+  color: #64748b;
+  font-style: italic;
+}
+
+.tokenTag {
+  color: #60a5fa;
+  font-weight: 500;
+}
+
+.tokenProperty {
+  color: #93c5fd;
+}
+
+.tokenNumber {
+  color: #fca5a5;
+}
+
+.tokenPunctuation {
+  color: #94a3b8;
+}
+
+@media (max-width: 640px) {
+  .header {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .tabs {
+    overflow-x: auto;
+    padding-bottom: 0.25rem;
+  }
+
+  .actions {
+    width: 100%;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+  }
+
+  .codeBlock {
+    font-size: 0.7rem;
+  }
+
+  .lineNumber {
+    min-width: 2.25rem;
+    padding-right: 0.75rem;
+  }
+}

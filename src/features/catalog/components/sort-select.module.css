@@ -1,0 +1,18 @@
+.sortSelect {
+  height: 2.65rem;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  padding: 0.3rem 0.6rem;
+  color: var(--ink-soft);
+  font-family: var(--font-ui-mono), monospace;
+  font-size: 0.68rem;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: var(--surface-inset);
+  outline: none;
+}
+
+.sortSelect:focus {
+  border-color: var(--focus);
+  outline: 2px solid color-mix(in srgb, var(--focus) 24%, transparent);
+}

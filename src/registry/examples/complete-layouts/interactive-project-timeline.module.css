@@ -1,0 +1,240 @@
+.container {
+  width: 100%;
+  min-height: 480px;
+  background: #090b10;
+  border-radius: var(--radius-lg, 12px);
+  border: 1px solid var(--border-subtle, rgba(255, 255, 255, 0.08));
+  padding: 1.75rem;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.75rem;
+  font-family: var(--font-mono, monospace);
+  color: #38bdf8;
+  background: rgba(56, 189, 248, 0.1);
+  padding: 0.25rem 0.65rem;
+  border-radius: 4px;
+}
+
+.overallStatus {
+  font-size: 0.75rem;
+  font-family: var(--font-mono, monospace);
+  color: #94a3b8;
+}
+
+.timelineTrackContainer {
+  position: relative;
+  width: 100%;
+  margin-bottom: 2rem;
+  padding: 1rem 0;
+}
+
+.trackLine {
+  position: absolute;
+  top: 32px;
+  left: 20px;
+  right: 20px;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.1);
+  z-index: 1;
+}
+
+.milestonesRow {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.75rem;
+}
+
+.milestoneNode {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 0.5rem;
+  transition: transform 0.2s ease;
+}
+
+.milestoneNode:hover {
+  transform: translateY(-2px);
+}
+
+.iconCircle {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: #090b10;
+  border: 2px solid;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 0.65rem;
+  transition: all 0.2s ease;
+}
+
+.completed .iconCircle {
+  border-color: #34d399;
+  color: #34d399;
+  background: rgba(52, 211, 153, 0.1);
+}
+
+.active .iconCircle {
+  border-color: #38bdf8;
+  color: #38bdf8;
+  background: rgba(56, 189, 248, 0.15);
+  box-shadow: 0 0 14px rgba(56, 189, 248, 0.4);
+}
+
+.upcoming .iconCircle {
+  border-color: rgba(255, 255, 255, 0.2);
+  color: #64748b;
+  background: #0d1117;
+}
+
+.selectedNode .iconCircle {
+  transform: scale(1.15);
+}
+
+.nodeQuarter {
+  font-size: 0.65rem;
+  font-family: var(--font-mono, monospace);
+  color: #94a3b8;
+  margin-bottom: 0.2rem;
+}
+
+.nodeTitle {
+  font-size: 0.75rem;
+  color: #f1f5f9;
+  font-weight: 500;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.detailCard {
+  background: rgba(18, 22, 34, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius-md, 8px);
+  padding: 1.75rem;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5);
+  margin-top: auto;
+}
+
+.detailHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.75rem;
+}
+
+.titleGroup {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+}
+
+.statusPill {
+  font-size: 0.65rem;
+  font-family: var(--font-mono, monospace);
+  font-weight: 700;
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+}
+
+.pill_completed {
+  background: rgba(52, 211, 153, 0.15);
+  color: #34d399;
+}
+
+.pill_active {
+  background: rgba(56, 189, 248, 0.15);
+  color: #38bdf8;
+}
+
+.pill_upcoming {
+  background: rgba(255, 255, 255, 0.06);
+  color: #94a3b8;
+}
+
+.detailDate {
+  font-size: 0.75rem;
+  font-family: var(--font-mono, monospace);
+  color: #94a3b8;
+}
+
+.phaseTag {
+  font-size: 0.7rem;
+  font-family: var(--font-mono, monospace);
+  color: #64748b;
+}
+
+.detailTitle {
+  margin: 0 0 0.5rem 0;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.detailSummary {
+  margin: 0 0 1.5rem 0;
+  font-size: 0.85rem;
+  line-height: 1.6;
+  color: #cbd5e1;
+}
+
+.deliverablesSection {
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  padding-top: 1.25rem;
+}
+
+.deliverableHeader {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.75rem;
+  font-family: var(--font-mono, monospace);
+  color: #38bdf8;
+  margin-bottom: 0.75rem;
+}
+
+.deliverableGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 0.5rem;
+}
+
+.deliverableItem {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.8rem;
+  color: #cbd5e1;
+  background: rgba(255, 255, 255, 0.02);
+  padding: 0.45rem 0.65rem;
+  border-radius: 4px;
+}
+
+.arrowIcon {
+  color: #38bdf8;
+  flex-shrink: 0;
+}

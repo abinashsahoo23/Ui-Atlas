@@ -1,0 +1,112 @@
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 28rem;
+  padding: 3rem 1rem;
+}
+
+.card {
+  width: min(100%, 34rem);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  box-shadow: var(--surface-raised);
+  padding: clamp(1.5rem, 4vw, 2.5rem);
+  display: flex;
+  flex-direction: column;
+  border-radius: 14px;
+  background-image: radial-gradient(circle at 100% 0%, rgba(120, 101, 255, 0.12), transparent 42%);
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-family: var(--font-ui-mono), monospace;
+  font-size: 0.58rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: #ff7185;
+  background: rgba(255, 51, 79, 0.1);
+  border: 1px solid rgba(255, 51, 79, 0.32);
+  border-radius: 5px;
+  padding: 0.25rem 0.6rem;
+  margin-bottom: 1.25rem;
+  align-self: flex-start;
+}
+
+.title {
+  margin: 0;
+  font-family: var(--font-display), sans-serif;
+  font-size: clamp(2rem, 5vw, 3rem);
+  font-weight: 600;
+  letter-spacing: -0.04em;
+  color: var(--ink);
+  line-height: 1.05;
+}
+
+.title span {
+  color: var(--accent);
+}
+
+.intro {
+  margin: 0.85rem 0 1.75rem;
+  font-size: 0.85rem;
+  line-height: 1.6;
+  color: var(--muted);
+}
+
+.actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.primaryLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.55rem 0.95rem;
+  background: var(--accent);
+  color: #ffffff;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-decoration: none;
+  border: 1px solid var(--accent-strong);
+  border-radius: 6px;
+  transition: background-color 160ms ease, box-shadow 160ms ease, transform 160ms ease;
+}
+
+.primaryLink:hover {
+  background: var(--accent-strong);
+  box-shadow: 0 8px 22px rgba(120, 101, 255, 0.24);
+  transform: translateY(-1px);
+}
+
+.secondaryLink {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.55rem 0.95rem;
+  background: var(--surface-soft);
+  color: var(--ink-soft);
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-decoration: none;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  transition: background-color 160ms ease, color 160ms ease, border-color 160ms ease, transform 160ms ease;
+}
+
+.secondaryLink:hover {
+  background: var(--surface-hover, rgba(255, 255, 255, 0.08));
+  color: var(--ink);
+  border-color: var(--border-medium, rgba(255, 255, 255, 0.2));
+  transform: translateY(-1px);
+}
+
+.primaryLink:focus-visible,
+.secondaryLink:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 3px;
+}

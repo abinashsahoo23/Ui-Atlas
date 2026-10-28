@@ -1,0 +1,146 @@
+.hero {
+  display: grid;
+  min-height: 18rem;
+  grid-template-columns: 1fr 0.9fr;
+  overflow: hidden;
+  border: 1px solid #d8dff0;
+  background: #f8f9fd;
+  color: #19243e;
+}
+
+.copy {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  padding: clamp(1.35rem, 4vw, 2.75rem);
+}
+
+.kicker,
+.artLabel {
+  color: #475879;
+  font-family: var(--font-ui-mono), monospace;
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+}
+
+.copy h2 {
+  max-width: 12ch;
+  margin: 1rem 0 0;
+  font-family: var(--font-display), sans-serif;
+  font-size: clamp(1.65rem, 4cqw, 2.55rem);
+  font-weight: 600;
+  line-height: 1.08;
+  letter-spacing: -0.035em;
+}
+
+.copy p {
+  max-width: 29ch;
+  margin: 0.9rem 0 1.2rem;
+  color: #53617b;
+  font-size: 0.82rem;
+  line-height: 1.6;
+}
+
+.paletteRow {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-bottom: 1.15rem;
+}
+
+.paletteLabel {
+  font-family: var(--font-ui-mono), monospace;
+  font-size: 0.58rem;
+  color: #6a7996;
+}
+
+.paletteBtn {
+  border: 1px solid #ccd6e8;
+  background: #edf1fa;
+  padding: 0.2rem 0.45rem;
+  font-family: var(--font-ui-mono), monospace;
+  font-size: 0.55rem;
+  color: #3b4c6e;
+  cursor: pointer;
+  transition: all 140ms ease;
+}
+
+.paletteBtn[data-active="true"] {
+  border-color: #3348b8;
+  background: #3348b8;
+  color: #ffffff;
+}
+
+.actionBtn {
+  display: inline-flex;
+  min-height: 2.4rem;
+  align-items: center;
+  gap: 0.55rem;
+  border: 1px solid #3348b8;
+  background: #3348b8;
+  padding: 0.5rem 0.85rem;
+  color: white;
+  font-size: 0.72rem;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 2px 2px 0 #b3bfe8;
+  transition: all 120ms ease;
+}
+
+.actionBtn:hover {
+  background: #233596;
+  transform: translateY(-1px);
+}
+
+.actionBtn span:last-child {
+  font-size: 0.9rem;
+}
+
+.art {
+  position: relative;
+  display: grid;
+  min-height: 15rem;
+  overflow: hidden;
+  place-items: center;
+  background:
+    radial-gradient(ellipse at 68% 31%, rgb(255 255 255 / 76%) 0 2%, transparent 34%),
+    radial-gradient(ellipse at 18% 87%, #e6f4e9 0, transparent 33%),
+    linear-gradient(140deg, #aab9ff 0%, #c6b7f5 47%, #e7c8dd 100%);
+}
+
+.orbit {
+  position: absolute;
+  width: 66%;
+  aspect-ratio: 1;
+  border: 1px solid rgb(255 255 255 / 74%);
+  border-radius: 50%;
+  transform: rotate(-28deg) scaleY(0.54);
+}
+
+.disc {
+  width: 38%;
+  aspect-ratio: 1;
+  border: 1px solid rgb(255 255 255 / 84%);
+  border-radius: 50%;
+  background: linear-gradient(145deg, #fff9 0%, #c4ccff 42%, #7c88db 100%);
+  box-shadow: 0 20px 45px rgb(51 62 138 / 22%);
+}
+
+.artLabel {
+  position: absolute;
+  right: 1rem;
+  bottom: 1rem;
+  color: #34416b;
+}
+
+@media (max-width: 600px) {
+  .hero {
+    grid-template-columns: 1fr;
+  }
+
+  .art {
+    min-height: 10rem;
+  }
+}

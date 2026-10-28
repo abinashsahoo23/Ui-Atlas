@@ -1,0 +1,225 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 48rem;
+  height: 24rem;
+  background: #ffffff;
+  border: 1px solid #d8e0ee;
+  box-shadow: 4px 4px 0 #e4eaf4;
+  overflow: hidden;
+}
+
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.65rem 1rem;
+  background: #f8fafc;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.topbarLeft {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.bookIcon {
+  color: var(--accent);
+}
+
+.docTitle {
+  font-family: var(--font-ui-mono), monospace;
+  font-size: 0.58rem;
+  font-weight: 700;
+  color: #475569;
+  letter-spacing: 0.05em;
+}
+
+.progressContainer {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.progressLabel {
+  font-family: var(--font-ui-mono), monospace;
+  font-size: 0.56rem;
+  font-weight: 700;
+  color: #64748b;
+}
+
+.progressBarBg {
+  width: 80px;
+  height: 4px;
+  background: #e2e8f0;
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.progressBarFill {
+  height: 100%;
+  background: var(--accent);
+  transition: width 100ms ease-out;
+}
+
+.layout {
+  display: grid;
+  grid-template-columns: 13rem 1fr;
+  flex: 1;
+  min-height: 0;
+}
+
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem 0.85rem;
+  background: #f1f5f9;
+  border-right: 1px solid #e2e8f0;
+  overflow-y: auto;
+}
+
+.sidebarHeading {
+  margin: 0 0 0.65rem;
+  font-family: var(--font-ui-mono), monospace;
+  font-size: 0.54rem;
+  font-weight: 700;
+  color: #64748b;
+  letter-spacing: 0.08em;
+}
+
+.navRail {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  flex: 1;
+}
+
+.railLink {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.45rem 0.6rem;
+  border: 1px solid transparent;
+  background: transparent;
+  color: #475569;
+  font-size: 0.72rem;
+  cursor: pointer;
+  text-align: left;
+  border-radius: 2px;
+  transition: all 120ms ease;
+}
+
+.railLink:hover {
+  background: #e2e8f0;
+  color: #1e293b;
+}
+
+.railLink[data-active="true"] {
+  background: #ffffff;
+  border-color: #cbd5e1;
+  color: var(--accent-strong);
+  font-weight: 600;
+  box-shadow: 0 1px 3px rgb(0 0 0 / 5%);
+}
+
+.railLink:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 1px;
+}
+
+.railIndex {
+  font-family: var(--font-ui-mono), monospace;
+  font-size: 0.54rem;
+  color: #94a3b8;
+}
+
+.railTitle {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.topBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.35rem 0.6rem;
+  border: 1px solid #cbd5e1;
+  background: #ffffff;
+  color: #64748b;
+  font-size: 0.64rem;
+  cursor: pointer;
+  width: fit-content;
+  margin-top: 0.75rem;
+}
+
+.topBtn:hover {
+  color: #1e293b;
+  border-color: #94a3b8;
+}
+
+.contentViewport {
+  padding: 1.25rem 1.5rem;
+  overflow-y: auto;
+  scroll-behavior: smooth;
+  outline: 0;
+}
+
+.contentViewport:focus-visible {
+  box-shadow: inset 0 0 0 2px var(--focus);
+}
+
+.docSection {
+  margin-bottom: 2rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.sectionHeader {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  margin-bottom: 0.45rem;
+}
+
+.hashIcon {
+  color: #94a3b8;
+}
+
+.docSection h3 {
+  margin: 0;
+  font-family: var(--font-display), sans-serif;
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: #1e293b;
+}
+
+.sectionBody {
+  margin: 0 0 0.85rem;
+  font-size: 0.8rem;
+  color: #475569;
+  line-height: 1.6;
+}
+
+.sampleCodeBlock {
+  padding: 0.65rem 0.85rem;
+  background: #0f172a;
+  color: #93c5fd;
+  font-family: var(--font-ui-mono), monospace;
+  font-size: 0.65rem;
+  border-radius: 2px;
+  line-height: 1.4;
+  white-space: pre;
+}
+
+@media (max-width: 600px) {
+  .layout {
+    grid-template-columns: 1fr;
+  }
+  .sidebar {
+    display: none;
+  }
+}

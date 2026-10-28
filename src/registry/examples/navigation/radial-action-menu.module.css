@@ -1,0 +1,157 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  min-height: 22rem;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  background: radial-gradient(circle at center, #ffffff 0%, #f0f4fa 100%);
+  border: 1px solid #d4deef;
+  position: relative;
+  overflow: hidden;
+}
+
+.stage {
+  position: relative;
+  width: 260px;
+  height: 260px;
+  display: grid;
+  place-items: center;
+}
+
+.radialRing {
+  position: absolute;
+  inset: 10px;
+  pointer-events: none;
+  animation: fadeIn 200ms ease-out;
+}
+
+.ringSvg {
+  width: 100%;
+  height: 100%;
+}
+
+.guideCircle {
+  fill: none;
+  stroke: #c8d5ea;
+  stroke-width: 1.5;
+  stroke-dasharray: 4 4;
+}
+
+.menuAnchor {
+  position: relative;
+  width: 3.4rem;
+  height: 3.4rem;
+  display: grid;
+  place-items: center;
+}
+
+.centerButton {
+  position: relative;
+  z-index: 10;
+  display: grid;
+  width: 3.4rem;
+  height: 3.4rem;
+  place-items: center;
+  border-radius: 50%;
+  border: 1px solid #23358c;
+  background: linear-gradient(135deg, #3047b7 0%, #1e2e7b 100%);
+  color: #ffffff;
+  cursor: pointer;
+  box-shadow: 0 8px 24px rgb(30 46 123 / 30%);
+  transition: transform 180ms cubic-bezier(0.16, 1, 0.3, 1), background-color 180ms ease;
+}
+
+.centerButton:hover {
+  transform: scale(1.05);
+}
+
+.centerButton[data-open="true"] {
+  background: #171f38;
+  border-color: #3b4e7a;
+}
+
+.centerButton:focus-visible {
+  outline: 3px solid var(--focus);
+  outline-offset: 3px;
+}
+
+.orbitButton {
+  position: absolute;
+  z-index: 5;
+  display: grid;
+  width: 2.75rem;
+  height: 2.75rem;
+  place-items: center;
+  border-radius: 50%;
+  border: 1px solid #c9d5ea;
+  background: #ffffff;
+  color: #2b3e6c;
+  cursor: pointer;
+  box-shadow: 0 6px 16px rgb(20 35 70 / 12%), 0 1px 2px rgb(0 0 0 / 6%);
+  transition: transform 220ms cubic-bezier(0.16, 1, 0.3, 1), opacity 180ms ease, background 140ms ease;
+}
+
+.orbitButton:hover {
+  background: #2563eb;
+  color: #ffffff;
+  border-color: #1d4ed8;
+  transform: scale(1.1) !important;
+}
+
+.orbitButton:focus-visible {
+  outline: 2px solid var(--focus);
+  outline-offset: 2px;
+}
+
+.tooltip {
+  position: absolute;
+  bottom: -1.6rem;
+  background: #0f172a;
+  color: #f8fafc;
+  font-family: var(--font-ui-mono), monospace;
+  font-size: 0.52rem;
+  padding: 0.15rem 0.35rem;
+  border-radius: 2px;
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 120ms ease;
+}
+
+.orbitButton:hover .tooltip {
+  opacity: 1;
+}
+
+.statusFooter {
+  position: absolute;
+  bottom: 0.85rem;
+  font-family: var(--font-ui-mono), monospace;
+  font-size: 0.6rem;
+  color: #64748b;
+}
+
+.activeFeedback {
+  color: #166534;
+  background: #dcfce7;
+  padding: 0.2rem 0.5rem;
+  border: 1px solid #bbf7d0;
+  font-weight: 600;
+}
+
+.hint {
+  color: #6b7c99;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .orbitButton,
+  .centerButton {
+    transition: none !important;
+  }
+}

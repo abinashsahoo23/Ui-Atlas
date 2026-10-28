@@ -1,0 +1,153 @@
+.container {
+  width: 100%;
+  min-height: 480px;
+  background: #090b10;
+  border-radius: var(--radius-lg, 12px);
+  border: 1px solid var(--border-subtle, rgba(255, 255, 255, 0.08));
+  padding: 1.75rem;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.75rem;
+  font-family: var(--font-mono, monospace);
+  color: #a5b4fc;
+  background: rgba(165, 180, 252, 0.1);
+  padding: 0.25rem 0.65rem;
+  border-radius: 4px;
+}
+
+.controls {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.navBtn {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: #cbd5e1;
+  padding: 0.4rem;
+  border-radius: 4px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.navBtn:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.navBtn:not(:disabled):hover {
+  background: rgba(255, 255, 255, 0.14);
+  color: #ffffff;
+}
+
+.counter {
+  font-size: 0.75rem;
+  font-family: var(--font-mono, monospace);
+  color: #94a3b8;
+  padding: 0 0.4rem;
+}
+
+.deckContainer {
+  position: relative;
+  width: 100%;
+  max-width: 520px;
+  height: 300px;
+  margin: 0 auto;
+}
+
+.card {
+  position: absolute;
+  inset: 0;
+  border-radius: var(--radius-lg, 12px);
+  border: 1px solid;
+  padding: 1.75rem;
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.6);
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease, border-color 0.3s ease;
+  cursor: pointer;
+  box-sizing: border-box;
+}
+
+.currentCard {
+  box-shadow: 0 20px 45px rgba(0, 0, 0, 0.8);
+}
+
+.cardHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.stepBadge {
+  font-size: 0.7rem;
+  font-family: var(--font-mono, monospace);
+  font-weight: 700;
+  letter-spacing: 0.08em;
+}
+
+.iconCircle {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.cardTitle {
+  margin: 0 0 0.5rem 0;
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #ffffff;
+  letter-spacing: -0.01em;
+}
+
+.cardSubtitle {
+  margin: 0 0 1.5rem 0;
+  font-size: 0.85rem;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.metricRow {
+  margin-top: auto;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  padding-top: 0.85rem;
+}
+
+.metricBlock {
+  display: flex;
+  align-items: baseline;
+  gap: 0.65rem;
+}
+
+.metricNum {
+  font-size: 1.5rem;
+  font-family: var(--font-mono, monospace);
+  font-weight: 700;
+}
+
+.metricText {
+  font-size: 0.75rem;
+  color: rgba(255, 255, 255, 0.7);
+}

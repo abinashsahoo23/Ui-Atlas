@@ -1,0 +1,209 @@
+.container {
+  position: relative;
+  width: 100%;
+  min-height: 440px;
+  background-color: #07060a;
+  border-radius: 12px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border: 1px solid rgba(239, 68, 68, 0.2);
+  box-shadow: 0 12px 36px -8px rgba(0, 0, 0, 0.7);
+  user-select: none;
+}
+
+.centerStage {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 2rem;
+}
+
+.glitchWrapper {
+  position: relative;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.wireframeBox {
+  position: absolute;
+  inset: -6px -10px;
+  border: 1px dashed rgba(255, 255, 255, 0.35);
+  pointer-events: none;
+  z-index: 5;
+}
+
+.wireCoordTL {
+  position: absolute;
+  top: -16px;
+  left: -2px;
+  font-family: var(--font-tech-mono, monospace);
+  font-size: 0.58rem;
+  color: rgba(255, 255, 255, 0.6);
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+}
+
+.wireCoordBR {
+  position: absolute;
+  bottom: -16px;
+  right: -2px;
+  font-family: var(--font-tech-mono, monospace);
+  font-size: 0.58rem;
+  color: rgba(255, 255, 255, 0.6);
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+}
+
+.wireMarkerTL,
+.wireMarkerTR,
+.wireMarkerBL,
+.wireMarkerBR {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  background: #ffffff;
+}
+
+.wireMarkerTL { top: -2px; left: -2px; }
+.wireMarkerTR { top: -2px; right: -2px; }
+.wireMarkerBL { bottom: -2px; left: -2px; }
+.wireMarkerBR { bottom: -2px; right: -2px; }
+
+.baseText {
+  font-family: var(--font-heading, "Inter"), sans-serif;
+  font-size: clamp(2.5rem, 8cqw, 5.5rem);
+  font-weight: 900;
+  letter-spacing: -0.04em;
+  text-transform: none;
+  color: #f8fafc;
+  position: relative;
+  z-index: 2;
+}
+
+.glitchLayer {
+  position: absolute;
+  inset: 0;
+  font-family: var(--font-heading, "Inter"), sans-serif;
+  font-size: clamp(2.5rem, 8cqw, 5.5rem);
+  font-weight: 900;
+  letter-spacing: -0.04em;
+  text-transform: none;
+  pointer-events: none;
+}
+
+.redSlice {
+  color: #ef4444;
+  clip-path: polygon(0 15%, 100% 15%, 100% 42%, 0 42%);
+  transform: translate(-3px, 1px);
+}
+
+.cyanSlice {
+  color: #06b6d4;
+  clip-path: polygon(0 58%, 100% 58%, 100% 85%, 0 85%);
+  transform: translate(3px, -1px);
+}
+
+.scanlines {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    rgba(255, 255, 255, 0) 50%,
+    rgba(0, 0, 0, 0.3) 50%
+  );
+  background-size: 100% 4px;
+  pointer-events: none;
+  z-index: 3;
+}
+
+.overlay {
+  position: relative;
+  z-index: 4;
+  padding: 1.5rem;
+  pointer-events: none;
+}
+
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.35rem 0.75rem;
+  background: rgba(239, 68, 68, 0.1);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(239, 68, 68, 0.25);
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-family: var(--font-mono, monospace);
+  color: #f87171;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 0.75rem;
+}
+
+.title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #f8fafc;
+  margin: 0 0 0.5rem 0;
+  letter-spacing: -0.02em;
+}
+
+.description {
+  font-size: 0.875rem;
+  color: #94a3b8;
+  max-width: 480px;
+  line-height: 1.5;
+  margin: 0;
+}
+
+.controls {
+  position: relative;
+  z-index: 4;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  padding: 1.25rem 1.5rem;
+  background: linear-gradient(to top, rgba(7, 6, 10, 0.95), rgba(7, 6, 10, 0.4) 70%, transparent);
+  pointer-events: auto;
+}
+
+.controlGroup {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(24, 18, 30, 0.75);
+  backdrop-filter: blur(12px);
+  padding: 0.25rem 0.5rem;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  padding: 0.35rem 0.65rem;
+  font-size: 0.75rem;
+  font-family: var(--font-mono, monospace);
+  color: #f87171;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.btn:hover {
+  color: #f1f5f9;
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.btn.active {
+  color: #f87171;
+  background: rgba(239, 68, 68, 0.15);
+  border-color: rgba(239, 68, 68, 0.35);
+}
