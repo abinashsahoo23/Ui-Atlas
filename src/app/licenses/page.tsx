@@ -1,15 +1,17 @@
-import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowUpRight, Check, ExternalLink, FileText, Fingerprint, Scale, Type } from "lucide-react";
 import { ScrollReveal } from "@/components/animations/scroll-reveal";
 import { catalogEntries } from "@/features/catalog/data/catalog";
+import { createPageMetadata } from "@/lib/seo";
 import { ShimmerText, WaveRippleHeading } from "@/app/kinetic-text-effects";
 import styles from "./licenses.module.css";
 
-export const metadata: Metadata = {
-  title: "Licenses & attribution",
-  description: "Review the attribution and license records for UI Atlas examples, fonts, and runtime packages.",
-};
+export const metadata = createPageMetadata({
+  title: "Licenses and Attribution",
+  description:
+    "Review the source, attribution, and reuse terms listed for UI Atlas component studies, fonts, and runtime packages.",
+  path: "/licenses",
+});
 
 const catalogLicenseGroups = catalogEntries.reduce<Array<{ attribution: string; license: string; count: number }>>(
   (groups, entry) => {

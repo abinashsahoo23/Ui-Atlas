@@ -3,6 +3,8 @@ import type { ReactNode } from "react";
 import { NavLinks } from "./nav-links";
 import { CtaGradientWaves } from "./cta-gradient-waves";
 import { FooterArtBanner } from "./footer-art-banner";
+import { CookieConsent, CookieSettingsTrigger } from "./cookie-consent";
+import { GoogleAnalytics } from "@/features/analytics/components/google-analytics";
 import { GlitchText, GlitchAuroraText, ShimmerText } from "@/app/kinetic-text-effects";
 import styles from "./site-shell.module.css";
 
@@ -45,7 +47,7 @@ export function SiteShell({ children }: { children: ReactNode }) {
               <div className={styles.ctaButtons}>
                 <Link href="/library" className={styles.ctaBtnPrimary}>
                   <span>Explore Full Library</span>
-                  <span className={styles.ctaBtnArrow} aria-hidden="true">→</span>
+                  <span className={styles.ctaBtnArrow} aria-hidden="true">Ã¢â€ â€™</span>
                 </Link>
                 <Link href="/library" className={styles.ctaBtnSecondary}>
                   <span>Browse free components</span>
@@ -94,11 +96,13 @@ export function SiteShell({ children }: { children: ReactNode }) {
             </nav>
 
             <div className={styles.footerLegal}>
-              <span>© 2026 UI Atlas</span>
-              <span>·</span>
+              <span>Ã‚Â© 2026 UI Atlas</span>
+              <span>Ã‚Â·</span>
               <span>Built with precision</span>
-              <span>·</span>
+              <span>Ã‚Â·</span>
               <Link href="/licenses" className={styles.footerLegalLink}>Licenses & attribution</Link>
+              <span>Ã‚Â·</span>
+              <CookieSettingsTrigger />
             </div>
           </div>
 
@@ -106,6 +110,8 @@ export function SiteShell({ children }: { children: ReactNode }) {
           <FooterArtBanner />
         </div>
       </footer>
+      <GoogleAnalytics />
+      <CookieConsent />
     </div>
   );
 }

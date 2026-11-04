@@ -16,6 +16,7 @@ import {
   RotateCcw,
 } from "lucide-react";
 import type { CatalogItem } from "@/features/catalog/types";
+import { trackAnalyticsEvent } from "@/features/analytics/lib/analytics";
 import { clientPreviewComponents } from "@/registry/client-previews";
 import { ScrollReveal } from "@/components/animations/scroll-reveal";
 import { HoverScrambleTitle, ShimmerText, WaveRippleHeading } from "@/app/kinetic-text-effects";
@@ -90,6 +91,12 @@ export function BackgroundStudioClient({ entries }: { entries: CatalogItem[] }) 
   );
   const [isFullscreenStage, setIsFullscreenStage] = useState(false);
 
+  function selectStage(slug: string) {
+    if (slug === activeStageSlug) return;
+    trackAnalyticsEvent("background_studio_stage_select", { component_slug: slug });
+    setActiveStageSlug(slug);
+  }
+
   // Filtered background list
   const filteredEntries = useMemo(() => {
     return entries.filter((item) => {
@@ -153,13 +160,24 @@ export function BackgroundStudioClient({ entries }: { entries: CatalogItem[] }) 
               placeholder="Filter by shader name, effect, physics, or tag..."
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
+              onKeyDown={(event) => {
+                const query = event.currentTarget.value.trim();
+                if (event.key === "Enter" && query) {
+                  trackAnalyticsEvent("background_studio_search", {
+                    search_length: Math.min(query.length, 200),
+                  });
+                }
+              }}
               className={styles.searchInput}
               aria-label="Filter background specimens"
             />
             {searchQuery && (
               <button
                 type="button"
-                onClick={() => setSearchQuery("")}
+                onClick={() => {
+                  setSearchQuery("");
+                  trackAnalyticsEvent("background_studio_search_clear");
+                }}
                 className={styles.clearSearchBtn}
                 aria-label="Clear search"
               >
@@ -174,7 +192,12 @@ export function BackgroundStudioClient({ entries }: { entries: CatalogItem[] }) 
                 key={f.id}
                 role="tab"
                 aria-selected={activeFilter === f.id}
-                onClick={() => setActiveFilter(f.id)}
+                onClick={() => {
+                  if (activeFilter !== f.id) {
+                    trackAnalyticsEvent("background_studio_filter_select", { filter_id: f.id });
+                    setActiveFilter(f.id);
+                  }
+                }}
                 className={styles.filterPill}
                 data-active={activeFilter === f.id}
               >
@@ -227,7 +250,13 @@ export function BackgroundStudioClient({ entries }: { entries: CatalogItem[] }) 
               <button
                 type="button"
                 className={styles.stageControlBtn}
-                onClick={() => setIsFullscreenStage((prev) => !prev)}
+                onClick={() => {
+                  const nextFullscreen = !isFullscreenStage;
+                  setIsFullscreenStage(nextFullscreen);
+                  trackAnalyticsEvent("background_studio_fullscreen_toggle", {
+                    state: nextFullscreen ? "expanded" : "collapsed",
+                  });
+                }}
                 aria-label={isFullscreenStage ? "Exit expanded stage" : "Expand stage"}
                 title={isFullscreenStage ? "Collapse stage" : "Expand stage"}
               >
@@ -275,6 +304,7 @@ export function BackgroundStudioClient({ entries }: { entries: CatalogItem[] }) 
               onClick={() => {
                 setSearchQuery("");
                 setActiveFilter("all");
+                trackAnalyticsEvent("background_studio_filters_reset");
               }}
               className={styles.resetBtn}
             >
@@ -292,7 +322,7 @@ export function BackgroundStudioClient({ entries }: { entries: CatalogItem[] }) 
                   <article
                     className={styles.card}
                     data-selected={isSelected}
-                    onClick={() => setActiveStageSlug(item.slug)}
+                    onClick={() => selectStage(item.slug)}
                   >
                     <div className={styles.previewBox}>
                       {PreviewComponent ? (
@@ -332,7 +362,7 @@ export function BackgroundStudioClient({ entries }: { entries: CatalogItem[] }) 
                           className={styles.stageSelectBtn}
                           onClick={(event) => {
                             event.stopPropagation();
-                            setActiveStageSlug(item.slug);
+                            selectStage(item.slug);
                           }}
                           aria-pressed={isSelected}
                           aria-label={`${isSelected ? "Keep" : "Show"} ${item.title} in the inspection stage`}

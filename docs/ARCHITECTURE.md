@@ -13,6 +13,8 @@ flowchart TD
   Registry --> Demos[Isolated React demos and CSS Modules]
   Pages --> ClientControls[Small client controls]
   ClientControls --> SaveAdapter[Collections storage adapter]
+  Consent[Cookie consent] --> SaveAdapter
+  Consent <--> ConsentCookie[(Essential preference cookie)]
   SaveAdapter <--> LocalStorage[(Browser localStorage)]
 ```
 
@@ -68,9 +70,9 @@ Each demo lives below `src/registry/examples/<category>/` with a colocated `.mod
 
 ## Browser-local saves
 
-The collections storage adapter owns the versioned key `ui-atlas:saved-entry-ids:v1`. It catches malformed JSON and unavailable storage. `useSyncExternalStore` provides a stable empty server snapshot and a string snapshot of browser storage; local writes notify subscribers, and the browser `storage` event supports other tabs. The client collection joins saved IDs against the current catalog, so stale IDs are not rendered.
+The collections adapter owns `ui-atlas:saved-entry-ids:v1` and reads or writes it only after functional consent. Functional consent controls the optional saved-example storage feature; rejecting or revoking it removes saved IDs from this device and notifies mounted collection views. The adapter catches malformed JSON and unavailable storage. `useSyncExternalStore` provides an empty server snapshot, local writes notify subscribers, and the browser `storage` event supports other tabs. The client collection joins saved IDs against the current catalog, so stale IDs are not rendered.
 
-Do not read localStorage during Server Component rendering. A future database adapter can replace this boundary without changing catalog metadata or route presentation.
+The first-party `ui-atlas-consent` cookie stores essential, functional, and analytics preferences for 180 days with `SameSite=Lax`; essential consent storage is always enabled. Functional consent gates saved-example localStorage. Analytics consent gates the GA4 script and Consent Mode v2 updates; the tag is not requested before opt-in. App Router page views are sent manually with query strings removed. In the GA4 web stream, keep the other Enhanced Measurement signals enabled, turn off browser-history page views to avoid duplicates, and turn off automatic site search so free-text queries are not collected. Do not read localStorage during Server Component rendering. A future database adapter can replace this boundary without changing catalog metadata or route presentation.
 
 ## Invalid data, assets, and licences
 

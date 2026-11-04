@@ -1,16 +1,17 @@
-import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowUpRight, Bookmark, Gauge, Layers3, Sparkles, Terminal } from "lucide-react";
 import { ScrollReveal } from "@/components/animations/scroll-reveal";
 import { catalogEntries } from "@/features/catalog/data/catalog";
 import { categoryDefinitions } from "@/features/catalog/data/categories";
+import { createPageMetadata } from "@/lib/seo";
 import { ShimmerText, WaveRippleHeading } from "@/app/kinetic-text-effects";
 import styles from "./changelog.module.css";
 
-export const metadata: Metadata = {
+export const metadata = createPageMetadata({
   title: "Changelog",
-  description: "Product and catalog updates from UI Atlas.",
-};
+  description: "Read recent UI Atlas product, catalog, performance, and interface updates.",
+  path: "/changelog",
+});
 
 const backgroundCount = catalogEntries.filter((entry) => entry.category === "backgrounds").length;
 

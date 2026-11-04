@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { Bookmark, Trash2 } from "lucide-react";
 import { useSavedEntries } from "@/features/collections/lib/use-saved-entries";
+import { trackAnalyticsEvent } from "@/features/analytics/lib/analytics";
 import type { CatalogItem } from "@/features/catalog/types";
 import { getCategory } from "@/features/catalog/lib/catalog";
 import { ScrollReveal } from "@/components/animations/scroll-reveal";
@@ -49,7 +50,19 @@ export function SavedCollection({ entries }: { entries: readonly CatalogItem[] }
               <Link className={styles.open} href={"/item/" + entry.slug} aria-label={"Open " + entry.title}>
                 <Bookmark size={16} aria-hidden="true" />
               </Link>
-              <button type="button" onClick={() => removeEntry(entry.id)} aria-label={"Remove " + entry.title + " from collection"}>
+              <button
+                type="button"
+                onClick={() => {
+                  if (removeEntry(entry.id)) {
+                    trackAnalyticsEvent("collection_remove", {
+                      component_id: entry.id,
+                      component_name: entry.title,
+                      source: "collections",
+                    });
+                  }
+                }}
+                aria-label={"Remove " + entry.title + " from collection"}
+              >
                 <Trash2 size={16} aria-hidden="true" />
               </button>
             </div>

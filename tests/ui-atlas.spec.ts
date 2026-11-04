@@ -1,15 +1,17 @@
 import { test, expect } from "@playwright/test";
 
 test.beforeEach(async ({ page }) => {
-  // Clear localStorage once before each test without persisting on sub-navigations
+  await page.route("https://www.googletagmanager.com/**", (route) =>
+    route.fulfill({ status: 200, contentType: "application/javascript", body: "" }),
+  );
+  // Give the existing journeys functional storage consent after clearing prior state.
   await page.goto("/");
   await page.evaluate(() => {
-    try {
-      window.localStorage.clear();
-    } catch {
-      // ignore
-    }
+    window.localStorage.clear();
+    document.cookie = "ui-atlas-consent=; Max-Age=0; Path=/";
   });
+  await page.reload();
+  await page.getByRole("button", { name: "Accept all", exact: true }).click();
 });
 
 test.describe("UI Atlas End-to-End Suite", () => {

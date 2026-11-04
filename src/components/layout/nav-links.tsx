@@ -4,6 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Bookmark, Info, Layers3, Sparkles, Menu, X } from "lucide-react";
+import { trackAnalyticsEvent } from "@/features/analytics/lib/analytics";
 import styles from "./site-shell.module.css";
 
 export function NavLinks() {
@@ -19,13 +20,29 @@ export function NavLinks() {
     setMobileMenuOpen(false);
   };
 
+  function trackNavigationClick(item: string, surface: string) {
+    trackAnalyticsEvent("navigation_click", {
+      navigation_item: item,
+      navigation_surface: surface,
+    });
+  }
+
+  function handleQuickNavigation(item: string) {
+    trackNavigationClick(item, "mobile_quick_sections");
+    closeMenu();
+  }
+
   return (
     <>
       <nav className={styles.navWrapper} aria-label="Primary navigation">
         <button
           type="button"
           className={styles.mobileMenuToggle}
-          onClick={() => setMobileMenuOpen((prev) => !prev)}
+          onClick={() => {
+            const nextOpen = !mobileMenuOpen;
+            setMobileMenuOpen(nextOpen);
+            trackNavigationClick(nextOpen ? "menu_open" : "menu_close", "mobile_header");
+          }}
           aria-label={mobileMenuOpen ? "Close navigation menu" : "Open navigation menu"}
           aria-expanded={mobileMenuOpen}
         >
@@ -39,7 +56,10 @@ export function NavLinks() {
             data-active={isLibrary}
             aria-current={isLibrary ? "page" : undefined}
             title="Component Library"
-            onClick={closeMenu}
+            onClick={() => {
+              trackNavigationClick("library", "primary_header");
+              closeMenu();
+            }}
           >
             <Layers3 size={15} aria-hidden="true" />
             <span>Library</span>
@@ -50,7 +70,10 @@ export function NavLinks() {
             data-active={isStudio}
             aria-current={isStudio ? "page" : undefined}
             title="Background Studio"
-            onClick={closeMenu}
+            onClick={() => {
+              trackNavigationClick("backgrounds", "primary_header");
+              closeMenu();
+            }}
           >
             <Sparkles size={15} aria-hidden="true" />
             <span>Backgrounds</span>
@@ -61,7 +84,10 @@ export function NavLinks() {
             data-active={isCollections}
             aria-current={isCollections ? "page" : undefined}
             title="Saved Collections"
-            onClick={closeMenu}
+            onClick={() => {
+              trackNavigationClick("collections", "primary_header");
+              closeMenu();
+            }}
           >
             <Bookmark size={15} aria-hidden="true" />
             <span>Collections</span>
@@ -72,31 +98,42 @@ export function NavLinks() {
             data-active={isAbout}
             aria-current={isAbout ? "page" : undefined}
             title="About UI Atlas"
-            onClick={closeMenu}
+            onClick={() => {
+              trackNavigationClick("about", "primary_header");
+              closeMenu();
+            }}
           >
             <Info size={15} aria-hidden="true" />
             <span>About</span>
           </Link>
-          <Link className={styles.navCta} href="/library" onClick={closeMenu} title="Explore Library">
+          <Link
+            className={styles.navCta}
+            href="/library"
+            onClick={() => {
+              trackNavigationClick("explore_library", "primary_header_cta");
+              closeMenu();
+            }}
+            title="Explore Library"
+          >
             <span>Explore Library</span>
           </Link>
         </div>
       </nav>
 
       <nav className={styles.mobileTabBar} aria-label="Quick sections">
-        <Link className={styles.mobileTab} href="/library" aria-current={isLibrary ? "page" : undefined} onClick={closeMenu}>
+        <Link className={styles.mobileTab} href="/library" aria-current={isLibrary ? "page" : undefined} onClick={() => handleQuickNavigation("library")}>
           <Layers3 size={17} aria-hidden="true" />
           <span>Library</span>
         </Link>
-        <Link className={styles.mobileTab} href="/backgrounds" aria-current={isStudio ? "page" : undefined} onClick={closeMenu}>
+        <Link className={styles.mobileTab} href="/backgrounds" aria-current={isStudio ? "page" : undefined} onClick={() => handleQuickNavigation("backgrounds")}>
           <Sparkles size={17} aria-hidden="true" />
           <span>Backgrounds</span>
         </Link>
-        <Link className={styles.mobileTab} href="/collections" aria-current={isCollections ? "page" : undefined} onClick={closeMenu}>
+        <Link className={styles.mobileTab} href="/collections" aria-current={isCollections ? "page" : undefined} onClick={() => handleQuickNavigation("collections")}>
           <Bookmark size={17} aria-hidden="true" />
           <span>Saved</span>
         </Link>
-        <Link className={styles.mobileTab} href="/about" aria-current={isAbout ? "page" : undefined} onClick={closeMenu}>
+        <Link className={styles.mobileTab} href="/about" aria-current={isAbout ? "page" : undefined} onClick={() => handleQuickNavigation("about")}>
           <Info size={17} aria-hidden="true" />
           <span>About</span>
         </Link>

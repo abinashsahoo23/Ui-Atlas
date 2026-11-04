@@ -7,12 +7,15 @@ import { CatalogEntryCard } from "@/features/catalog/components/catalog-entry-ca
 import { LibraryCategorySidebar } from "@/features/catalog/components/library-category-sidebar";
 import { SortSelect } from "@/features/catalog/components/sort-select";
 import { ScrollReveal } from "@/components/animations/scroll-reveal";
+import { JsonLd } from "@/components/seo/json-ld";
 import { ShimmerText, WaveRippleHeading } from "@/app/kinetic-text-effects";
+import { TrackedSearchForm } from "@/features/analytics/components/tracked-search-form";
 import {
   categoryDefinitions,
   getCategory,
   searchCatalogEntries,
 } from "@/features/catalog/lib/catalog";
+import { createPageMetadata, SITE_URL } from "@/lib/seo";
 import styles from "../library.module.css";
 
 type CategoryPageProps = {
@@ -27,7 +30,14 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: CategoryPageProps): Promise<Metadata> {
   const { category: slug } = await params;
   const category = getCategory(slug);
-  return category ? { title: category.title } : {};
+  return category
+    ? createPageMetadata({
+        title: `${category.title} UI Patterns`,
+        description: `${category.description} Browse live ${category.title.toLowerCase()} examples with previews and implementation notes.`,
+        path: `/library/${category.slug}`,
+        keywords: [category.title, `${category.title} UI patterns`, "React interface examples"],
+      })
+    : {};
 }
 
 export default function CategoryPage({ params, searchParams }: CategoryPageProps) {
@@ -66,6 +76,22 @@ async function CategoryContent({
 
   return (
     <div className={styles.page}>
+      <JsonLd
+        data={{
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          itemListElement: [
+            { "@type": "ListItem", position: 1, name: "Home", item: SITE_URL },
+            { "@type": "ListItem", position: 2, name: "Library", item: `${SITE_URL}/library` },
+            {
+              "@type": "ListItem",
+              position: 3,
+              name: category.title,
+              item: `${SITE_URL}/library/${category.slug}`,
+            },
+          ],
+        }}
+      />
       <ScrollReveal as="header" className={styles.heading}>
         <div>
           <p className={styles.eyebrow}>
@@ -106,7 +132,11 @@ async function CategoryContent({
             </div>
 
             <div className={styles.searchControls}>
-              <form action={`/library/${category.slug}`} className={styles.search} role="search">
+              <TrackedSearchForm
+                action={`/library/${category.slug}`}
+                className={styles.search}
+                searchSurface="category"
+              >
                 <Search size={17} aria-hidden="true" />
                 <label className="sr-only" htmlFor="category-search">
                   Search within {category.title}
@@ -120,7 +150,7 @@ async function CategoryContent({
                 />
                 {sort !== "default" && <input type="hidden" name="sort" value={sort} />}
                 <button type="submit">Search</button>
-              </form>
+              </TrackedSearchForm>
 
               <form action={`/library/${category.slug}`} method="get">
                 {query && <input type="hidden" name="q" value={query} />}

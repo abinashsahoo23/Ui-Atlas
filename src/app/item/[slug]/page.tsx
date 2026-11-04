@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { ArrowLeft, ExternalLink } from "lucide-react";
 import { Suspense } from "react";
 import { FavoriteButton } from "@/features/catalog/components/favorite-button";
+import { JsonLd } from "@/components/seo/json-ld";
 import { getCatalogEntry, getCategory } from "@/features/catalog/lib/catalog";
 import { catalogEntries } from "@/features/catalog/data/catalog";
 import { ClientExamplePreview } from "@/registry/client-previews";
@@ -11,6 +12,7 @@ import { getExampleSource } from "@/registry/lib/source";
 import { CodeViewer } from "@/components/ui/code-viewer";
 import { ScrollReveal } from "@/components/animations/scroll-reveal";
 import { buildAiBuildPrompt } from "@/features/catalog/lib/build-ai-prompt";
+import { createPageMetadata, SITE_URL } from "@/lib/seo";
 import { ShimmerText, WaveRippleHeading } from "@/app/kinetic-text-effects";
 import styles from "./item.module.css";
 
@@ -23,7 +25,15 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: ItemPageProps): Promise<Metadata> {
   const { slug } = await params;
   const entry = getCatalogEntry(slug);
-  return entry ? { title: entry.title, description: entry.description } : {};
+  if (!entry) return {};
+
+  const category = getCategory(entry.category);
+  return createPageMetadata({
+    title: `${entry.title}: React UI Component`,
+    description: `${entry.description} Explore the live preview, React source, and responsive notes.`,
+    path: `/item/${entry.slug}`,
+    keywords: [entry.title, category?.title ?? entry.category, ...entry.tags.slice(0, 4)],
+  });
 }
 
 export default function ItemPage({ params }: ItemPageProps) {
@@ -44,6 +54,28 @@ async function ItemContent({ params }: ItemPageProps) {
 
   return (
     <article className={styles.page}>
+      <JsonLd
+        data={{
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          itemListElement: [
+            { "@type": "ListItem", position: 1, name: "Home", item: SITE_URL },
+            { "@type": "ListItem", position: 2, name: "Library", item: `${SITE_URL}/library` },
+            {
+              "@type": "ListItem",
+              position: 3,
+              name: category?.title ?? entry.category,
+              item: `${SITE_URL}/library/${entry.category}`,
+            },
+            {
+              "@type": "ListItem",
+              position: 4,
+              name: entry.title,
+              item: `${SITE_URL}/item/${entry.slug}`,
+            },
+          ],
+        }}
+      />
       <ScrollReveal as="nav" className={styles.breadcrumb} aria-label="Breadcrumb">
         <Link href="/library"><ArrowLeft size={14} aria-hidden="true" /> Library</Link>
         <span aria-hidden="true">/</span>

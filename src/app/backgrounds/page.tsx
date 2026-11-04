@@ -1,12 +1,14 @@
-import type { Metadata } from "next";
 import { catalogEntries } from "@/features/catalog/data/catalog";
 import { BackgroundStudioClient } from "./studio-client";
+import { createPageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Background Studio // UI Atlas",
+export const metadata = createPageMetadata({
+  title: "Background Studio",
   description:
-    "Interactive studio to browse, compare, customize, and inspect procedural WebGL2 shaders, generative canvas particle physics, and responsive kinetic background surfaces.",
-};
+    "Browse and customize interactive background studies, including procedural shaders, generative canvas effects, and responsive visual surfaces.",
+  path: "/backgrounds",
+  keywords: ["interactive backgrounds", "React background effects", "canvas backgrounds"],
+});
 
 export default function BackgroundStudioPage() {
   const backgroundEntries = catalogEntries.filter((item) => item.category === "backgrounds");

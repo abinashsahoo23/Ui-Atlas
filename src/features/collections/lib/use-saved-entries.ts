@@ -9,6 +9,7 @@ import {
   subscribeToSavedEntryIds,
   toggleSavedEntryId,
 } from "./storage";
+import type { SavedEntryToggleResult } from "./storage";
 
 export function useSavedEntryIds(): readonly string[] {
   const storedValue = useSyncExternalStore(
@@ -34,26 +35,17 @@ export function useSavedEntries() {
   const savedIds = useSavedEntryIds();
 
   const isSaved = useCallback((id: string) => savedIds.includes(id), [savedIds]);
-
-  const toggleSave = useCallback((id: string) => {
-    toggleSavedEntryId(id);
+  const toggleSave = useCallback((id: string): SavedEntryToggleResult => {
+    return toggleSavedEntryId(id);
   }, []);
-
   const saveEntry = useCallback((id: string) => {
-    addSavedEntryId(id);
+    return addSavedEntryId(id);
   }, []);
-
   const removeEntry = useCallback((id: string) => {
-    removeSavedEntryId(id);
+    return removeSavedEntryId(id);
   }, []);
 
-  return {
-    savedIds,
-    isSaved,
-    toggleSave,
-    saveEntry,
-    removeEntry,
-  };
+  return { savedIds, isSaved, toggleSave, saveEntry, removeEntry };
 }
 
 export function useSavedEntry(entryId: string) {

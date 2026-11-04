@@ -1,8 +1,31 @@
+import {
+  hasCookieConsent,
+  subscribeToCookieConsentChanges,
+} from "@/features/consent/lib/cookie-consent";
+
 const SAVED_ENTRY_IDS_KEY = "ui-atlas:saved-entry-ids:v1";
 const savedEntryListeners = new Set<() => void>();
 
+function notifySavedEntryListeners() {
+  for (const listener of savedEntryListeners) listener();
+}
+
+function handleConsentChange() {
+  if (!hasCookieConsent("functional") && typeof window !== "undefined") {
+    try {
+      window.localStorage.removeItem(SAVED_ENTRY_IDS_KEY);
+    } catch {
+      // Browser storage can be disabled independently of cookies.
+    }
+  }
+  notifySavedEntryListeners();
+}
+
+const unsubscribeFromConsent = subscribeToCookieConsentChanges(handleConsentChange);
+void unsubscribeFromConsent;
+
 function getStoredValue(): string {
-  if (typeof window === "undefined") {
+  if (typeof window === "undefined" || !hasCookieConsent("functional")) {
     return "";
   }
 
@@ -35,22 +58,18 @@ export function getSavedEntryIdsServerSnapshot() {
   return "";
 }
 
-/** Read saved IDs from browser storage. Call this only from client-side code. */
+/** Read saved IDs from browser storage only after functional consent. */
 export function readSavedEntryIds(): string[] {
-  if (typeof window === "undefined") {
+  if (typeof window === "undefined" || !hasCookieConsent("functional")) {
     return [];
   }
 
   try {
     const storedValue = getStoredValue();
-    if (!storedValue) {
-      return [];
-    }
+    if (!storedValue) return [];
 
     const parsedValue: unknown = JSON.parse(storedValue);
-    if (!Array.isArray(parsedValue)) {
-      return [];
-    }
+    if (!Array.isArray(parsedValue)) return [];
 
     return parsedValue.filter(
       (value): value is string => typeof value === "string" && value.length > 0,
@@ -60,10 +79,10 @@ export function readSavedEntryIds(): string[] {
   }
 }
 
-/** Persist IDs from a client event or effect; this adapter has no React state. */
-export function writeSavedEntryIds(ids: readonly string[]): void {
-  if (typeof window === "undefined") {
-    return;
+/** Persist IDs only after functional consent has been granted. */
+export function writeSavedEntryIds(ids: readonly string[]): boolean {
+  if (typeof window === "undefined" || !hasCookieConsent("functional")) {
+    return false;
   }
 
   try {
@@ -71,37 +90,49 @@ export function writeSavedEntryIds(ids: readonly string[]): void {
       SAVED_ENTRY_IDS_KEY,
       JSON.stringify([...new Set(ids)]),
     );
-    for (const listener of savedEntryListeners) {
-      listener();
-    }
+    notifySavedEntryListeners();
+    return true;
   } catch {
-    // Storage can be unavailable in private browsing or restricted contexts.
+    return false;
   }
 }
 
-/** Safely add an ID to stored entries. */
-export function addSavedEntryId(id: string): void {
+export function addSavedEntryId(id: string): boolean {
+  if (!hasCookieConsent("functional")) return false;
   const current = readSavedEntryIds();
   if (!current.includes(id)) {
-    writeSavedEntryIds([...current, id]);
+    return writeSavedEntryIds([...current, id]);
   }
+  return true;
 }
 
-/** Safely remove an ID from stored entries. */
-export function removeSavedEntryId(id: string): void {
+export function removeSavedEntryId(id: string): boolean {
+  if (!hasCookieConsent("functional")) return false;
   const current = readSavedEntryIds();
-  writeSavedEntryIds(current.filter((item) => item !== id));
+  if (!current.includes(id)) return false;
+  return writeSavedEntryIds(current.filter((item) => item !== id));
 }
 
-/** Safely toggle an ID in stored entries; returns whether it is now saved. */
-export function toggleSavedEntryId(id: string): boolean {
+export type SavedEntryToggleResult =
+  | { status: "saved"; saved: true }
+  | { status: "removed"; saved: false }
+  | { status: "needs-consent"; saved: false }
+  | { status: "unavailable"; saved: false };
+
+/** Toggle a saved ID only when optional functional storage is permitted. */
+export function toggleSavedEntryId(id: string): SavedEntryToggleResult {
+  if (!hasCookieConsent("functional")) {
+    return { status: "needs-consent", saved: false };
+  }
+
   const current = readSavedEntryIds();
   const exists = current.includes(id);
-  if (exists) {
-    writeSavedEntryIds(current.filter((item) => item !== id));
-    return false;
-  } else {
-    writeSavedEntryIds([...current, id]);
-    return true;
-  }
+  const didWrite = exists
+    ? writeSavedEntryIds(current.filter((item) => item !== id))
+    : writeSavedEntryIds([...current, id]);
+
+  if (!didWrite) return { status: "unavailable", saved: false };
+  return exists
+    ? { status: "removed", saved: false }
+    : { status: "saved", saved: true };
 }

@@ -1,6 +1,6 @@
 # UI Atlas project memory
 
-Last verified: 2026-10-27
+Last verified: 2026-11-04
 
 ## Environment
 
@@ -87,7 +87,7 @@ UI Atlas is a local-first library for browsing, previewing, and adapting reusabl
   - Improved accessibility across tactile and interactive cards: added `:focus-visible` high-contrast indicator rings, full keyboard Enter/Space activation handlers on interactive cards, and `@media (prefers-reduced-motion: reduce)` fallbacks.
   - Enhanced Motion Lab (`/animations`) category filter pills to index `animations` and `galleries`.
   - Automated verification: `npm run typecheck` (0 errors), `npm run lint` (0 errors), `npm run build` (114/114 static and partial prerender pages generated), and Playwright test suite (`npm run test:e2e`, 13/13 tests passing in 35.7s) all passed with exit code 0.
-- On 2026-10-22, Complete Landing Page Redesign (Neon Experimental — Digital Playground) was completed:
+- On 2026-10-22, Complete Landing Page Redesign (Neon Experimental Ã¢â‚¬â€ Digital Playground) was completed:
   - Redesigned the homepage into a bold, modern, cyber-editorial developer experience using the strict three-color brand palette: Deep Black (`#08080D`), Neon Red (`#FF334F`), and Electric Indigo (`#7865FF`), supported by deep charcoals (`#12131C`) and crisp neutrals.
   - Implemented display and technical typography with Space Grotesk (bold display titles) and Space Mono (HUD annotations and counters), alongside Inter for body and UI.
   - Transformed the shared navigation and shell (`site-shell.tsx`, `nav-links.tsx`): added glowing neon red pixel mark, `NEON EXPERIMENTAL // VOL. 01` subtitle, live `ONLINE // 88 SPECIMENS` indicator pulse, responsive mobile hamburger drawer, accessible navigation links, and high-contrast "Explore Library" CTA.
@@ -115,7 +115,7 @@ UI Atlas is a local-first library for browsing, previewing, and adapting reusabl
   - Removed all unnecessary numbering across the landing page: removed `catNumber` ("01".."08") from primary category cards, `specIndex` ("09".."16") from specialized categories, and `HoloWireframeNumber` ("01".."03") along with `[STEP 01..]` from workflow cards.
   - Removed redundant section badge titles (`01 // THE KINETIC BENTO PLAYGROUND`, `02 // TAXONOMY MATRIX`, `DEDICATED STUDIO // 23 PROCEDURAL SHADERS`, `03 // KINETIC PLAYGROUND`, `04 // CREATIVE PIPELINE`) across all sections, allowing each section to open cleanly with its bold primary `<h2>` title.
   - Removed all arrows (`ArrowRight`, `ArrowUpRight`, `ChevronRight`) across all buttons, section headers, cards, and navigation CTAs.
-  - Removed hyphens and double-slash separators (`//`, `-`, `—`) from specimen tags (`FLAGSHIP 3D CANVAS`), workflow tags (`SEARCH & TAXONOMY`, `LIVE STAGES & LABS`, `NATIVE REACT & CSS`), header branding, telemetry strings, and descriptive copy.
+  - Removed hyphens and double-slash separators (`//`, `-`, `Ã¢â‚¬â€`) from specimen tags (`FLAGSHIP 3D CANVAS`), workflow tags (`SEARCH & TAXONOMY`, `LIVE STAGES & LABS`, `NATIVE REACT & CSS`), header branding, telemetry strings, and descriptive copy.
   - Automated verification: `npm run typecheck` (0 errors), `npm run lint` (0 errors, 0 warnings), `npm run test:e2e` (all 13/13 tests passing), and `npm run build` (114/114 static & partial prerender pages generated in 12.9s) verified with exit code 0.
 - On 2026-10-23, Phase 13 React Bits Visual & Structural Alignment was completed:
   - Inspected and deeply analyzed `https://reactbits.dev/` via Playwright MCP to extract computed styles, DOM architecture, card geometry, transitions, and footer design.
@@ -137,14 +137,14 @@ UI Atlas is a local-first library for browsing, previewing, and adapting reusabl
   - Replaced the bento grid with the exact 2-row showcase layout requested from reference screenshots:
     - Section Header: Clean bold "See them in action" title with tight spacing.
     - Row 1 (2 equal-width 50/50 cards):
-      - Card 1 (Left): `Micro Slats` (`dot-grid-motion.tsx` rendering dense vertical rounded micro slats with steel palette `[0.65, 0.72, 0.82]` and wave lighting) with caption `Micro Slats` on left and `Backgrounds ↗` on right.
-      - Card 2 (Right): `Electric Logo` (`plasma-border-outline.tsx` featuring `Atom` icon with luminous multi-layer neon glow) with caption `Electric Logo` on left and `Animations ↗` on right.
+      - Card 1 (Left): `Micro Slats` (`dot-grid-motion.tsx` rendering dense vertical rounded micro slats with steel palette `[0.65, 0.72, 0.82]` and wave lighting) with caption `Micro Slats` on left and `Backgrounds Ã¢â€ â€”` on right.
+      - Card 2 (Right): `Electric Logo` (`plasma-border-outline.tsx` featuring `Atom` icon with luminous multi-layer neon glow) with caption `Electric Logo` on left and `Animations Ã¢â€ â€”` on right.
     - Row 2 (3 cards, 1fr 1.25fr 1fr):
-      - Card 3 (Left): `Tech Text` (`cyber-glitch-slice.tsx` rendering "Bits" with tech dashed selection frame, corner brackets, and dimension coordinates `5.58 × 68` / `18.69 × 85`) with caption `Tech Text` on left and `Text Animations ↗` on right.
-      - Card 4 (Center, wider): `Circular Carousel` (`perspective-ring-gallery.tsx` 3D cylindrical rotating cards) with caption `Circular Carousel` on left and `Components ↗` on right.
-      - Card 5 (Right): `Hold Button` (`magnetic-action-button.tsx` sleek dark pill with tactile press-and-hold timer feedback) with caption `Hold Button` on left and `Micro ↗` on right.
+      - Card 3 (Left): `Tech Text` (`cyber-glitch-slice.tsx` rendering "Bits" with tech dashed selection frame, corner brackets, and dimension coordinates `5.58 Ãƒâ€” 68` / `18.69 Ãƒâ€” 85`) with caption `Tech Text` on left and `Text Animations Ã¢â€ â€”` on right.
+      - Card 4 (Center, wider): `Circular Carousel` (`perspective-ring-gallery.tsx` 3D cylindrical rotating cards) with caption `Circular Carousel` on left and `Components Ã¢â€ â€”` on right.
+      - Card 5 (Right): `Hold Button` (`magnetic-action-button.tsx` sleek dark pill with tactile press-and-hold timer feedback) with caption `Hold Button` on left and `Micro Ã¢â€ â€”` on right.
   - Sizing & Layout Bug Fix: Resolved width collapse in `src/app/interactive-cards.module.css` by adding `width: 100%` across `.tiltCardContainer`, `.tiltCard`, `.tiltContent`, and `.spotlightContent`, guaranteeing equal 50/50 sizing in Row 1.
-  - Caption Bar Architecture: Title on left, category with `↗` arrow on right linking directly to `/item/[slug]`.
+  - Caption Bar Architecture: Title on left, category with `Ã¢â€ â€”` arrow on right linking directly to `/item/[slug]`.
   - Preview Cleanliness: Suppressed extraneous control HUDs, instruction badges, and overlay headers in showcase previews.
   - Automated & Visual Verification: `npm run typecheck` (0 errors), `npm run lint` (0 errors), `npm run build` (114/114 static & partial prerender pages compiled in 7.9s), and Playwright test suite (`npm run test:e2e`, 13/13 tests passing in 36.7s) verified with exit code 0. Zero horizontal overflow across mobile (375px) and desktop viewports.
 - On 2026-10-23, Phase 15 React Bits Footer & Above-Footer CTA Alignment, Inner Scrollbar Fix was completed:
@@ -153,7 +153,7 @@ UI Atlas is a local-first library for browsing, previewing, and adapting reusabl
   - Replaced Redundant Old Section 8 Final CTA: Cleanly removed the duplicate legacy CTA section in `src/app/page.tsx` so the page flows directly into the unified master footer card.
   - Implemented Top CTA Card ("Above Footer Card"):
     - Created high-performance HTML5 canvas component `CtaGradientWaves` (`src/components/layout/cta-gradient-waves.tsx` and `.module.css`) rendering silky, billowing waves/dunes customized to our website theme colors (deep indigo `#7865ff`, neon red `#ff334f`, violet `#4f46e5`, deep dark base `#0e0b13`).
-    - Nested `.ctaCard` inside the master footer with 6px margin and 18px radius, featuring heading ("Build something people remember."), subtitle ("Start with the free library. When you need the complete system, UI Atlas is ready."), and side-by-side pill buttons: White primary pill ("Explore Full Library →") and translucent purple pill ("Browse free components").
+    - Nested `.ctaCard` inside the master footer with 6px margin and 18px radius, featuring heading ("Build something people remember."), subtitle ("Start with the free library. When you need the complete system, UI Atlas is ready."), and side-by-side pill buttons: White primary pill ("Explore Full Library Ã¢â€ â€™") and translucent purple pill ("Browse free components").
   - Implemented Middle Navigation & Brand Section (`.footerTop`):
     - Brand column on left: Atom/geometric logo + "UI Atlas" with clean descriptive copy ("Animated React components. Open source. Fully customizable.").
     - 3 Navigation columns on right: "Community" (GitHub, Discussions, Collections), "Product" (Docs, Tools, Showcase, Backgrounds), and "Taxonomy" (Backgrounds, Kinetic Text, Navigation, 3D Spatial).
@@ -207,3 +207,13 @@ UI Atlas is a local-first library for browsing, previewing, and adapting reusabl
 - On 2026-10-27, restored the established navbar layout and controls after visual review, retaining the newer near-opaque dark tinted background and softer blur so page content no longer shows clearly through the header.
 - On 2026-10-27, expanded the About page with catalog-derived statistics and category counts, a fuller discover/inspect/adapt workflow, implementation and reuse details, and the local preview model. It uses the landing page's Pixelify display font, Inter body font, existing scroll reveal and kinetic heading components, and reduced-motion-aware CSS animation.
 - Follow-up on 2026-10-27: About card groups now have distinct staggered entrance and hover motion. Card labels, titles, and descriptions reveal in sequence; titles use the existing reduced-motion-aware scramble treatment. `ScrollReveal` exposes a small `data-reveal-state` attribute so these text effects begin when each card enters view.
+
+- On 2026-11-04, first added the consent cookie and banner; the current implementation gates optional saved-example storage as detailed below.
+
+- The initial compact corner-card presentation was superseded by the current full-width consent banner.
+
+- On 2026-11-04, implemented consent-backed browser storage: the essential ui-atlas-consent cookie stores preference for 180 days; optional functional consent gates saved-example localStorage and revocation clears saved IDs. The initial banner offers Accept all, Reject all, Accept essential only, and Manage preferences. Footer Cookie settings reopens preferences. At that point UI Atlas had no analytics or marketing scripts/cookies. Verified on 2026-11-04: lint, TypeScript, production build, and all 19 Playwright tests passed; the five consent-specific browser tests also passed after the mobile-layout assertion was added.
+
+- On 2026-11-04, integrated GA4 (`G-YTLXRV3YKD`) behind the analytics preference. Consent Mode v2 defaults analytics and advertising storage to denied; the tag loads only after analytics opt-in, consent changes update immediately, and legacy consent cookies migrate with analytics disabled. Manual App Router page views omit query strings. Custom events cover catalog search/view, categories and sorting, source and prompt copies, collection changes, Background Studio actions, and primary navigation. In the GA4 web stream, browser-history page views and automatic site search must be disabled to prevent duplicate page views and collection of free-text search terms; other Enhanced Measurement signals can remain enabled. Typecheck, lint, and production build passed. The targeted analytics browser spec and all five consent browser specs reported passing with the Google tag request stubbed.
+
+- On 2026-11-04, completed the SEO foundation using the App Router Metadata API: unique canonical/social metadata for public pages, generated Open Graph image, catalog-driven sitemap, robots rules excluding local Collections, and WebSite/SearchAction plus breadcrumb JSON-LD. Lint, typecheck, and production build passed. Search Console ownership verification and sitemap submission remain manual.

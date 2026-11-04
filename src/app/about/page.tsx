@@ -1,4 +1,3 @@
-import type { Metadata } from "next";
 import Link from "next/link";
 import {
   ArrowUpRight,
@@ -14,13 +13,16 @@ import {
 import { ScrollReveal } from "@/components/animations/scroll-reveal";
 import { catalogEntries } from "@/features/catalog/data/catalog";
 import { categoryDefinitions } from "@/features/catalog/data/categories";
+import { createPageMetadata } from "@/lib/seo";
 import { CounterTicker, HoverScrambleTitle, ShimmerText, WaveRippleHeading } from "@/app/kinetic-text-effects";
 import styles from "./about.module.css";
 
-export const metadata: Metadata = {
-  title: "About UI Atlas",
-  description: "Explore how UI Atlas organizes live interface studies, implementation details, and reuse context.",
-};
+export const metadata = createPageMetadata({
+  title: "About",
+  description:
+    "Learn how UI Atlas organizes live interface studies, previews, implementation details, attribution, and local-first saves.",
+  path: "/about",
+});
 
 const backgroundCount = catalogEntries.filter((entry) => entry.category === "backgrounds").length;
 const dependencyFreeCount = catalogEntries.filter((entry) => entry.dependencies.length === 0).length;

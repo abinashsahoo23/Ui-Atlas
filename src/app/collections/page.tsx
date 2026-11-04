@@ -1,11 +1,16 @@
-import type { Metadata } from "next";
 import { SavedCollection } from "@/features/collections/components/saved-collection";
 import { catalogEntries } from "@/features/catalog/data/catalog";
 import { ScrollReveal } from "@/components/animations/scroll-reveal";
 import { ShimmerText, WaveRippleHeading } from "@/app/kinetic-text-effects";
 import styles from "./collections.module.css";
+import { createPageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = { title: "Collections" };
+export const metadata = createPageMetadata({
+  title: "Collections",
+  description: "View component studies saved locally in this browser.",
+  path: "/collections",
+  robots: { index: false, follow: false },
+});
 
 export default function CollectionsPage() {
   return (

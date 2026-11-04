@@ -1,4 +1,3 @@
-import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowUpRight, Search, X } from "lucide-react";
 import { Suspense } from "react";
@@ -9,9 +8,17 @@ import { searchCatalogEntries } from "@/features/catalog/lib/catalog";
 import { catalogEntries } from "@/features/catalog/data/catalog";
 import { ScrollReveal } from "@/components/animations/scroll-reveal";
 import { ShimmerText, WaveRippleHeading } from "@/app/kinetic-text-effects";
+import { TrackedSearchForm } from "@/features/analytics/components/tracked-search-form";
+import { createPageMetadata } from "@/lib/seo";
 import styles from "./library.module.css";
 
-export const metadata: Metadata = { title: "Library" };
+export const metadata = createPageMetadata({
+  title: "Browse React UI Components and Interface Patterns",
+  description:
+    "Search original interface studies by category or style, then explore live React previews, implementation notes, and copy-ready source.",
+  path: "/library",
+  keywords: ["React UI components", "interface patterns", "component previews"],
+});
 
 type SearchParams = Promise<{
   q?: string | string[];
@@ -80,7 +87,7 @@ async function LibraryContent({ searchParams }: { searchParams: SearchParams }) 
           </div>
 
           <div className={styles.searchControls}>
-            <form action="/library" className={styles.search} role="search">
+            <TrackedSearchForm action="/library" className={styles.search} searchSurface="library">
               <Search size={17} aria-hidden="true" />
               <label className="sr-only" htmlFor="library-search">
                 Search the library
@@ -95,7 +102,7 @@ async function LibraryContent({ searchParams }: { searchParams: SearchParams }) 
               {sort !== "default" && <input type="hidden" name="sort" value={sort} />}
               {activeCategory && <input type="hidden" name="category" value={activeCategory} />}
               <button type="submit">Search</button>
-            </form>
+            </TrackedSearchForm>
 
             <form action="/library" method="get">
               {query && <input type="hidden" name="q" value={query} />}

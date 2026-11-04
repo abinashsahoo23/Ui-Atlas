@@ -2,6 +2,7 @@
 
 import { useId, useState } from "react";
 import { Check, Copy, FileCode, Palette, Sparkles } from "lucide-react";
+import { trackAnalyticsEvent } from "@/features/analytics/lib/analytics";
 import styles from "./code-viewer.module.css";
 
 export type CodeViewerProps = {
@@ -53,6 +54,17 @@ export function CodeViewer({
       }
       setCopiedTarget(target);
       setCopyError(null);
+      trackAnalyticsEvent(
+        target === "prompt"
+          ? "ai_prompt_copy"
+          : activeTab === "tsx"
+            ? "react_code_copy"
+            : "css_code_copy",
+        {
+          component_key: previewKey,
+          code_format: target === "prompt" ? "ai_prompt" : activeTab,
+        },
+      );
       setTimeout(() => setCopiedTarget(null), 2000);
     } catch {
       setCopyError(target);

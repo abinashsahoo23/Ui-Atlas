@@ -42,6 +42,7 @@ import {
 } from "./interactive-cards";
 import { ScrollReveal } from "@/components/animations/scroll-reveal";
 import { HomeSearchShortcut } from "./home-search-shortcut";
+import { TrackedSearchForm } from "@/features/analytics/components/tracked-search-form";
 import styles from "./home.module.css";
 
 type CatalogEntry = (typeof catalogEntries)[number];
@@ -179,7 +180,7 @@ export default function HomePage() {
 
         {/* Search the catalog directly from the landing page. */}
         <div className={styles.searchContainer}>
-          <form action="/library" className={styles.searchHub} role="search">
+          <TrackedSearchForm action="/library" className={styles.searchHub} searchSurface="home">
             <Search size={18} className={styles.searchIcon} aria-hidden="true" />
             <label className="sr-only" htmlFor="home-search">
               Search components, shaders, and interaction effects
@@ -195,7 +196,7 @@ export default function HomePage() {
             <button type="submit" className={styles.searchSubmitBtn} aria-label="Search library">
               <Search size={16} aria-hidden="true" />
             </button>
-          </form>
+          </TrackedSearchForm>
         </div>
 
         {/* Primary Action Buttons */}
