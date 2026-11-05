@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { Cookie } from "lucide-react";
 import { HoverScrambleTitle, ShimmerText } from "@/app/kinetic-text-effects";
 import {
+  hasLegacyCookiePreferences,
   readCookiePreferences,
   requestCookieSettings,
   saveCookiePreferences,
@@ -28,7 +29,7 @@ export function CookieConsent() {
     setPreferences(savedPreferences);
     setFunctionalChoice(savedPreferences?.functional ?? false);
     setAnalyticsChoice(savedPreferences?.analytics ?? false);
-    setIsVisible(savedPreferences === null);
+    setIsVisible(savedPreferences === null || hasLegacyCookiePreferences());
     setIsReady(true);
 
     return subscribeToCookieSettingsRequests(() => {

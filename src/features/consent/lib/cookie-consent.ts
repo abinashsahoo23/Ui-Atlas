@@ -26,6 +26,15 @@ function getConsentCookieValue(): string | null {
   }
 }
 
+export function hasLegacyCookiePreferences(): boolean {
+  const value = getConsentCookieValue();
+  return value === "v1.all" ||
+    value === "v1.reject-all" ||
+    value === "v1.essential-only" ||
+    value === "v2.f1" ||
+    value === "v2.f0";
+}
+
 export function readCookiePreferences(): CookiePreferences | null {
   const value = getConsentCookieValue();
   if (!value) return null;

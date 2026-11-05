@@ -23,6 +23,27 @@ test.describe("Cookie consent", () => {
     );
   });
 
+  test("asks returning users with legacy consent for a fresh analytics choice", async ({ page }) => {
+    let googleTagRequests = 0;
+    page.on("request", (request) => {
+      if (request.url().startsWith("https://www.googletagmanager.com/gtag/js")) {
+        googleTagRequests += 1;
+      }
+    });
+
+    await page.goto("/");
+    await page.evaluate(() => {
+      document.cookie = "ui-atlas-consent=v2.f1; Path=/; SameSite=Lax";
+    });
+    await page.reload();
+
+    await expect(page.getByRole("region", { name: /cookies, your call/i })).toBeVisible();
+    expect(googleTagRequests).toBe(0);
+    await page.getByRole("button", { name: "Accept all", exact: true }).click();
+    await expect.poll(() => page.evaluate(() => document.cookie)).toContain("ui-atlas-consent=v3.f1.a1");
+    await expect.poll(() => googleTagRequests).toBe(1);
+  });
+
   test("shows a full-width banner and Manage Preferences can grant functional storage", async ({ page }) => {
     await clearConsentState(page);
 
