@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
+import Script from "next/script";
 import localFont from "next/font/local";
 import { SiteShell } from "@/components/layout/site-shell";
 import { JsonLd } from "@/components/seo/json-ld";
@@ -62,6 +63,19 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       className={[inter.variable, pixelify.variable, jetBrainsMono.variable].join(" ")}
     >
       <body>
+        <Script id="google-consent-default" strategy="beforeInteractive">
+          {`window.dataLayer = window.dataLayer || [];
+window.gtag = window.gtag || function(){ window.dataLayer.push(arguments); };
+window.__uiAtlasConsentDefaultsSet = true;
+window.gtag('consent', 'default', {
+  analytics_storage: 'denied',
+  functionality_storage: 'denied',
+  security_storage: 'granted',
+  ad_storage: 'denied',
+  ad_user_data: 'denied',
+  ad_personalization: 'denied'
+});`}
+        </Script>
         <JsonLd
           data={{
             "@context": "https://schema.org",
